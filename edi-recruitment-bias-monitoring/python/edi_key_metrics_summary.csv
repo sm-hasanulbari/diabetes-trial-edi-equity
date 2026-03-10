@@ -1,0 +1,21 @@
+Strand,Metric,Value,Unit,Data source
+Strand 1 — Trial Landscape,Total trials fetched (ClinicalTrials.gov),856.0,n,Real data
+Strand 1 — Trial Landscape,European trials,311.0,n,Real data
+Strand 1 — Trial Landscape,Global mean EDI score,37.5,/100,Real data
+Strand 1 — Trial Landscape,EU mean EDI score,39.6,/100,Real data
+Strand 1 — Trial Landscape,Trials with EDI < 40 (Poor/Fair),76.3,%,Real data
+Strand 1 — Trial Landscape,Trials with EDI >= 80 (Excellent),0.0,%,Real data
+Strand 2 — Drift Detection,Baseline female enrollment %,46.2,%,Synthetic
+Strand 2 — Drift Detection,End-of-trial female enrollment %,41.2,%,Synthetic
+Strand 2 — Drift Detection,Female enrollment drift magnitude,5.0,pp,Synthetic
+Strand 2 — Drift Detection,Baseline minority enrollment %,32.1,%,Synthetic
+Strand 2 — Drift Detection,End-of-trial minority enrollment %,21.8,%,Synthetic
+Strand 2 — Drift Detection,Minority enrollment drift magnitude,10.4,pp,Synthetic
+Strand 2 — Drift Detection,CUSUM alarm week (female),35.0,week,Synthetic
+Strand 2 — Drift Detection,CUSUM alarm week (minority),39.0,week,Synthetic
+Strand 2 — Drift Detection,CUSUM detection lag (female),9.0,weeks,Synthetic
+Strand 2 — Drift Detection,CUSUM detection lag (minority),13.0,weeks,Synthetic
+Strand 3 — AI Fairness,DIR — Minority vs White,0.932,ratio,Synthetic
+Strand 3 — AI Fairness,DIR — Female vs Male,1.014,ratio,Synthetic
+Strand 3 — AI Fairness,DIR — Elderly vs Non-elderly,0.91,ratio,Synthetic
+Strand 3 — AI Fairness,EEOC adverse impact threshold,0.8,ratio,Reference
