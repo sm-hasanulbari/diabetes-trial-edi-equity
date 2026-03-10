@@ -14,7 +14,7 @@ focus on European Type 2 Diabetes trials.
 
 | Strand | Data | Method | Key Finding |
 |--------|------|--------|-------------|
-| 1 — Trial Landscape | ClinicalTrials.gov API v2 (real, n=856) | 28-flag EDI scoring instrument | Mean EDI 37.5/100; 76% of trials below threshold |
+| 1 — Trial Landscape | ClinicalTrials.gov API v2 (real, n=1,671) | 28-flag EDI scoring instrument | Mean EDI 37.9/100; 73% of trials below threshold |
 | 2 — Drift Detection | Synthetic simulation (5 EU trials, 52 weeks) | CUSUM · EWMA · Rolling Z-test | Female enrollment drifts −5.0pp; CUSUM alarm at Week 35 |
 | 3 — AI Fairness | Derived from synthetic data | Disparate Impact · EOD · Calibration | DIR minority 0.932 (borderline) |
 

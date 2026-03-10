@@ -1,9 +1,9 @@
 Strand,Metric,Value,Unit,Data source
-Strand 1 — Trial Landscape,Total trials fetched (ClinicalTrials.gov),856.0,n,Real data
-Strand 1 — Trial Landscape,European trials,311.0,n,Real data
-Strand 1 — Trial Landscape,Global mean EDI score,37.5,/100,Real data
-Strand 1 — Trial Landscape,EU mean EDI score,39.6,/100,Real data
-Strand 1 — Trial Landscape,Trials with EDI < 40 (Poor/Fair),76.3,%,Real data
+Strand 1 — Trial Landscape,Total trials fetched (ClinicalTrials.gov),1671.0,n,Real data
+Strand 1 — Trial Landscape,European trials,688.0,n,Real data
+Strand 1 — Trial Landscape,Global mean EDI score,37.9,/100,Real data
+Strand 1 — Trial Landscape,EU mean EDI score,39.1,/100,Real data
+Strand 1 — Trial Landscape,Trials with EDI < 40 (Poor/Fair),73.4,%,Real data
 Strand 1 — Trial Landscape,Trials with EDI >= 80 (Excellent),0.0,%,Real data
 Strand 2 — Drift Detection,Baseline female enrollment %,46.2,%,Synthetic
 Strand 2 — Drift Detection,End-of-trial female enrollment %,41.2,%,Synthetic
