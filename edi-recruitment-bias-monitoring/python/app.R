@@ -41,7 +41,14 @@ dat <- list(
   stats_subgrp   = load_csv("stats_subgroup.csv"),
   stats_kpi      = load_csv("stats_kpi.csv"),
   stats_bayes    = load_csv("stats_bayes.csv"),
-  stats_missing  = load_csv("stats_missing_data.csv")
+  stats_missing  = load_csv("stats_missing_data.csv"),
+  cos_outcomes   = load_csv("cos_outcomes.csv"),
+  cos_delphi     = load_csv("cos_delphi.csv"),
+  cos_consensus  = load_csv("cos_consensus.csv"),
+  cos_audit      = load_csv("cos_audit.csv"),
+  cos_divergence = load_csv("cos_divergence.csv"),
+  cos_threshold  = load_csv("cos_threshold.csv"),
+  cos_kpi        = load_csv("cos_kpi.csv")
 )
 
 # 3. HELPERS -------------------------------------------------------------------
@@ -147,7 +154,8 @@ ui <- dashboardPage(
       menuItem("OUTCOME REPORT",    tabName = "outcomes", icon = icon("file-alt")),
       menuItem("REGULATORY EDI",    tabName = "regedi",   icon = icon("gavel")),
       menuItem("TARGET TRIAL",      tabName = "tte",      icon = icon("random")),
-      menuItem("STAT METHODS",       tabName = "stats",    icon = icon("calculator"))
+      menuItem("STAT METHODS",       tabName = "stats",    icon = icon("calculator")),
+      menuItem("CORE OUTCOMES",      tabName = "cos",      icon = icon("list-check"))
     ),
     hr(style = "border-color:#2D3748;margin:5px 15px;"),
     div(style = "padding:10px 18px;",
@@ -570,6 +578,68 @@ ui <- dashboardPage(
                 "Effect size attenuation by missingness mechanism.",
                 " Ref: Sterne et al. (2009) BMJ; Rubin (1976)."),
               withSpinner(plotlyOutput("stats_missing_plot", height = 340), color = "#C9A84C"))
+        )
+      ), # end stats tab
+
+      # == TAB 12: CORE OUTCOME SET =============================================
+      tabItem(tabName = "cos",
+        fluidRow(column(12,
+          div(style = paste0("background:#EBF7F1;border-left:4px solid #1A7A4A;",
+                             "padding:10px 14px;border-radius:4px;margin-bottom:6px;"),
+            tags$span(style = paste0("background:#1A7A4A;color:white;padding:2px 8px;",
+                                    "border-radius:3px;font-size:10px;font-weight:bold;"),
+                      "PROJECT 4 — BASEL"),
+            HTML("&nbsp;"),
+            tags$b("Core Outcome Set Development — EDI in Diabetes Clinical Trials"),
+            tags$p(style = "margin:5px 0 0;font-size:12px;color:#4A5568;",
+              "Systematic review of outcome reporting, 3-round Delphi consensus across 5 stakeholder groups, ",
+              "COS completeness audit, and consensus threshold sensitivity analysis. ",
+              "Ref: Williamson et al. (2012) Trials; Boers et al. (2014) OMERACT; Gargon et al. (2019) PLOS Med.")
+          )
+        )),
+        fluidRow(
+          valueBoxOutput("cos1", 3), valueBoxOutput("cos2", 3),
+          valueBoxOutput("cos3", 3), valueBoxOutput("cos4", 3)
+        ),
+        fluidRow(
+          box(title = "OUTCOME REPORTING RATES — 7,544 TRIALS", width = 8,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "% of trials reporting each outcome domain. EDI-sensitive outcomes critically under-reported."),
+              withSpinner(plotlyOutput("cos_reporting_plot", height = 380), color = "#C9A84C")),
+          box(title = "EDI vs CLINICAL REPORTING GAP", width = 4,
+              status = "danger", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Mean reporting rate by domain. Red bar = EDI outcomes."),
+              withSpinner(plotlyOutput("cos_gap_plot", height = 380), color = "#C9A84C"))
+        ),
+        fluidRow(
+          box(title = "DELPHI CONSENSUS — STAKEHOLDER SCORES BY ROUND", width = 6,
+              status = "warning", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Mean importance score (1-9) across 3 Delphi rounds. Score >= 7 = critical."),
+              selectInput("cos_cat", "Outcome category:",
+                          choices = c("All", "EDI-Sensitive", "Patient-Reported",
+                                      "Glycaemic Control", "Cardiovascular", "Renal", "Safety"),
+                          selected = "All", width = "200px"),
+              withSpinner(plotlyOutput("cos_delphi_plot", height = 340), color = "#C9A84C")),
+          box(title = "CLINICIANS vs PATIENTS — EDI OUTCOME PRIORITY GAP", width = 6,
+              status = "info", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Dumbbell chart: navy = clinician score, green = patient score. Larger gap = greater divergence."),
+              withSpinner(plotlyOutput("cos_divergence_plot", height = 340), color = "#C9A84C"))
+        ),
+        fluidRow(
+          box(title = "COS COMPLETENESS AUDIT — BY TRIAL TYPE", width = 7,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "% of COS outcomes reported by trial type and domain."),
+              withSpinner(plotlyOutput("cos_audit_plot", height = 340), color = "#C9A84C")),
+          box(title = "CONSENSUS THRESHOLD SENSITIVITY", width = 5,
+              status = "warning", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "EDI outcomes included in COS as threshold rises from 50% to 80%."),
+              withSpinner(plotlyOutput("cos_threshold_plot", height = 340), color = "#C9A84C"))
         )
       )
 
@@ -1534,6 +1604,191 @@ server <- function(input, output, session) {
              yaxis = list(title = "Cohen's d (estimated)"),
              paper_bgcolor = "white", plot_bgcolor = "white",
              legend = list(orientation = "h", y = -0.2))
+  })
+
+  # ===========================================================================
+  # TAB 12: CORE OUTCOME SET
+  # ===========================================================================
+
+  cos_kpi_val <- function(metric) {
+    df <- dat$cos_kpi
+    if (is.null(df)) return("—")
+    v <- df$value[df$metric == metric]
+    if (length(v) == 0) return("—")
+    as.character(v[1])
+  }
+
+  output$cos1 <- renderValueBox({
+    valueBox(cos_kpi_val("Total candidate outcomes"),
+             "Candidate Outcomes", icon = icon("list"),
+             color = "navy")
+  })
+  output$cos2 <- renderValueBox({
+    valueBox(paste0(cos_kpi_val("Outcomes achieving majority consensus"), "/",
+                    cos_kpi_val("Total candidate outcomes")),
+             "Majority Consensus", icon = icon("check-circle"),
+             color = "green")
+  })
+  output$cos3 <- renderValueBox({
+    valueBox(paste0(cos_kpi_val("EDI outcomes in final COS"), "/6"),
+             "EDI Outcomes in COS", icon = icon("users"),
+             color = "yellow")
+  })
+  output$cos4 <- renderValueBox({
+    v <- cos_kpi_val("EDI mean reporting rate pct")
+    valueBox(paste0(v, "%"), "EDI Reporting Rate",
+             icon = icon("exclamation-triangle"), color = "red")
+  })
+
+  # Reporting rate bar chart
+  output$cos_reporting_plot <- renderPlotly({
+    df <- dat$cos_outcomes
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    cat_cols <- c(
+      "Glycaemic Control" = "#0066CC", "Cardiovascular" = "#003366",
+      "Renal" = "#7B2D8B", "Patient-Reported" = "#1A7A4A",
+      "EDI-Sensitive" = "#C0392B", "Safety" = "#E67E22"
+    )
+    df$color <- cat_cols[df$category]
+    df$pct   <- round(df$reporting_rate * 100, 1)
+    df <- df[order(df$category, df$pct), ]
+    plot_ly(df, x = ~pct, y = ~reorder(outcome, pct), type = "bar",
+            orientation = "h",
+            marker = list(color = ~color),
+            text = ~paste0(pct, "%"),
+            textposition = "outside",
+            hovertext = ~paste0(outcome, "<br>", pct, "% of trials<br>Category: ", category),
+            hoverinfo = "text") %>%
+      layout(xaxis = list(title = "% of trials reporting", range = c(0, 110)),
+             yaxis = list(title = "", tickfont = list(size = 10)),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             showlegend = FALSE,
+             shapes = list(list(type = "line", x0 = 50, x1 = 50, y0 = -0.5,
+                                y1 = nrow(df) - 0.5,
+                                line = list(color = "#CCCCCC", dash = "dash"))))
+  })
+
+  # EDI gap bar chart
+  output$cos_gap_plot <- renderPlotly({
+    df <- dat$cos_outcomes
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    agg <- aggregate(reporting_rate ~ category, data = df, FUN = mean)
+    agg$pct   <- round(agg$reporting_rate * 100, 1)
+    agg$color <- ifelse(agg$category == "EDI-Sensitive", "#C0392B", "#003366")
+    agg <- agg[order(agg$pct), ]
+    plot_ly(agg, x = ~pct, y = ~reorder(category, pct), type = "bar",
+            orientation = "h",
+            marker = list(color = ~color),
+            text = ~paste0(pct, "%"), textposition = "outside",
+            hoverinfo = "text",
+            hovertext = ~paste0(category, ": ", pct, "%")) %>%
+      layout(xaxis = list(title = "Mean reporting rate (%)", range = c(0, 115)),
+             yaxis = list(title = ""),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             showlegend = FALSE)
+  })
+
+  # Delphi scores by round
+  output$cos_delphi_plot <- renderPlotly({
+    df <- dat$cos_delphi
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    cat_filter <- input$cos_cat
+    if (cat_filter != "All") df <- df[df$category == cat_filter, ]
+    agg <- aggregate(mean_score ~ stakeholder + round, data = df, FUN = mean)
+    agg$round <- paste0("Round ", agg$round)
+    cols <- c("Round 1" = "#CCCCCC", "Round 2" = "#0066CC", "Round 3" = "#003366")
+    p <- plot_ly()
+    for (rnd in c("Round 1", "Round 2", "Round 3")) {
+      sub <- agg[agg$round == rnd, ]
+      p <- p %>% add_trace(x = ~stakeholder, y = ~mean_score, data = sub,
+                           type = "bar", name = rnd,
+                           marker = list(color = cols[rnd]),
+                           hovertext = ~paste0(stakeholder, " | ", rnd,
+                                               "<br>Mean score: ", round(mean_score, 2)),
+                           hoverinfo = "text")
+    }
+    p %>% layout(barmode = "group",
+                 xaxis = list(title = ""),
+                 yaxis = list(title = "Mean score (1-9)", range = c(0, 10)),
+                 paper_bgcolor = "white", plot_bgcolor = "white",
+                 shapes = list(list(type = "line", x0 = -0.5, x1 = 4.5,
+                                    y0 = 7, y1 = 7,
+                                    line = list(color = "#C0392B", dash = "dash"))),
+                 legend = list(orientation = "h", y = -0.2))
+  })
+
+  # Clinician vs Patient dumbbell
+  output$cos_divergence_plot <- renderPlotly({
+    df <- dat$cos_divergence
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    df <- df[df$category == "EDI-Sensitive", ]
+    df <- df[order(df$score_Patients), ]
+    p <- plot_ly()
+    for (i in seq_len(nrow(df))) {
+      p <- p %>% add_segments(
+        x = df$score_Clinicians[i], xend = df$score_Patients[i],
+        y = df$outcome[i], yend = df$outcome[i],
+        line = list(color = "#CCCCCC", width = 2), showlegend = FALSE)
+    }
+    p %>%
+      add_trace(data = df, x = ~score_Clinicians, y = ~outcome,
+                type = "scatter", mode = "markers", name = "Clinicians",
+                marker = list(color = "#003366", size = 12),
+                hovertext = ~paste0(outcome, "<br>Clinician: ", round(score_Clinicians, 1)),
+                hoverinfo = "text") %>%
+      add_trace(data = df, x = ~score_Patients, y = ~outcome,
+                type = "scatter", mode = "markers", name = "Patients",
+                marker = list(color = "#1A7A4A", size = 12),
+                hovertext = ~paste0(outcome, "<br>Patient: ", round(score_Patients, 1)),
+                hoverinfo = "text") %>%
+      layout(xaxis = list(title = "Mean importance score (1-9)", range = c(3, 11)),
+             yaxis = list(title = ""),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             legend = list(orientation = "h", y = -0.2))
+  })
+
+  # COS completeness heatmap
+  output$cos_audit_plot <- renderPlotly({
+    df <- dat$cos_audit
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    pivot <- reshape(df[, c("trial_type", "domain", "completeness")],
+                     idvar = "trial_type", timevar = "domain", direction = "wide")
+    dom_cols <- c("Glycaemic Control", "Cardiovascular", "Renal",
+                  "Patient-Reported", "EDI-Sensitive", "Safety")
+    z_cols <- paste0("completeness.", dom_cols)
+    z_mat  <- as.matrix(pivot[, z_cols])
+    plot_ly(x = dom_cols, y = pivot$trial_type, z = z_mat,
+            type = "heatmap", colorscale = "RdYlGn",
+            zmin = 0, zmax = 100,
+            text = matrix(paste0(as.vector(z_mat), "%"),
+                          nrow = nrow(z_mat), ncol = ncol(z_mat)),
+            texttemplate = "%{text}",
+            hovertemplate = "%{y}<br>%{x}: %{z}%<extra></extra>") %>%
+      layout(xaxis = list(title = ""), yaxis = list(title = ""),
+             paper_bgcolor = "white")
+  })
+
+  # Threshold sensitivity
+  output$cos_threshold_plot <- renderPlotly({
+    df <- dat$cos_threshold
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    df_edi <- df[df$category == "EDI-Sensitive", ]
+    plot_ly(df_edi, x = ~threshold * 100, y = ~n_included,
+            type = "bar",
+            marker = list(color = "#C0392B"),
+            text = ~paste0(n_included, "/", n_total),
+            textposition = "outside",
+            hovertext = ~paste0("Threshold: ", threshold * 100, "%<br>",
+                                "Included: ", n_included, "/", n_total),
+            hoverinfo = "text") %>%
+      layout(xaxis = list(title = "Consensus threshold (%)", dtick = 5),
+             yaxis = list(title = "EDI outcomes in COS", range = c(0, 8)),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             shapes = list(list(type = "line", x0 = 70, x1 = 70,
+                                y0 = 0, y1 = 8,
+                                line = list(color = "#CCCCCC", dash = "dash"))),
+             annotations = list(list(x = 71, y = 7.5, text = "COMET 70%",
+                                     showarrow = FALSE, font = list(size = 10, color = "#888"))))
   })
 
 } # end server
