@@ -1,0 +1,13 @@
+subgroup,rr,rr_lo,rr_hi,raw_p,bonf_p,bh_fdr_p,sig_raw,sig_bonf,sig_bh,n_sim
+Female,0.835,0.714,0.977,0.032,0.384,0.123,True,False,False,282
+Age ≥65,0.951,0.797,1.135,0.421,1.0,0.593,False,False,False,615
+Low SES,0.803,0.66,0.976,0.018,0.216,0.123,True,False,False,528
+Rural,1.041,0.839,1.291,0.673,1.0,0.734,False,False,False,450
+HbA1c ≥9%,0.869,0.729,1.037,0.089,1.0,0.178,False,False,False,286
+eGFR <60,0.852,0.728,0.997,0.041,0.492,0.123,True,False,False,251
+Prior CVD,1.062,0.873,1.292,0.512,1.0,0.614,False,False,False,368
+Obesity (BMI ≥35),0.923,0.774,1.101,0.234,1.0,0.401,False,False,False,200
+Long diabetes (>10yr),0.887,0.743,1.058,0.067,0.804,0.161,False,False,False,282
+South Asian,1.03,0.814,1.304,0.891,1.0,0.891,False,False,False,301
+Black ethnicity,0.819,0.686,0.977,0.028,0.336,0.123,True,False,False,646
+No statin,0.932,0.766,1.134,0.445,1.0,0.593,False,False,False,394

@@ -1,0 +1,9 @@
+metric,value
+Power at d=0.3 alpha=0.05 N=200,85.1
+Min N 80pct power d=0.3 alpha=0.05,175.0
+Min N 90pct power d=0.3 alpha=0.05,235.0
+Subgroups sig uncorrected,4.0
+Subgroups sig Bonferroni,0.0
+Subgroups sig BH-FDR,0.0
+Type2 error alpha=0.05 d=0.3 N=200,14.9
+P benefit neutral N=300,100.0
