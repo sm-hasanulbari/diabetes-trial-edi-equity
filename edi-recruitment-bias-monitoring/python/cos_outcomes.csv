@@ -1,0 +1,29 @@
+category,outcome,outcome_id,reporting_rate,n_trials_reporting
+Glycaemic Control,HbA1c reduction,1,0.94,7091
+Glycaemic Control,Fasting plasma glucose,2,0.82,6186
+Glycaemic Control,Time in range (CGM),3,0.41,3093
+Glycaemic Control,Hypoglycaemia episodes,4,0.67,5054
+Glycaemic Control,Glucose variability,5,0.38,2867
+Cardiovascular,MACE (3-point),6,0.78,5884
+Cardiovascular,Systolic blood pressure,7,0.71,5356
+Cardiovascular,LDL cholesterol,8,0.69,5205
+Cardiovascular,Heart failure hospitalisation,9,0.52,3923
+Cardiovascular,Cardiovascular mortality,10,0.48,3621
+Renal,eGFR change,11,0.61,4602
+Renal,Albuminuria/proteinuria,12,0.58,4376
+Renal,End-stage renal disease,13,0.34,2565
+Renal,Renal composite endpoint,14,0.29,2188
+Patient-Reported,Health-related QoL (EQ-5D),15,0.31,2339
+Patient-Reported,Diabetes distress,16,0.18,1358
+Patient-Reported,Treatment satisfaction,17,0.22,1660
+Patient-Reported,Physical function,18,0.27,2037
+Patient-Reported,Fatigue/energy,19,0.15,1132
+Patient-Reported,Pain,20,0.12,905
+EDI-Sensitive,Outcome by ethnicity reported,21,0.08,604
+EDI-Sensitive,Outcome by SES reported,22,0.06,453
+EDI-Sensitive,Outcome by age subgroup (>70),23,0.04,302
+EDI-Sensitive,Outcome by sex/gender,24,0.11,830
+EDI-Sensitive,Access to intervention equity,25,0.05,377
+EDI-Sensitive,Adherence by EDI subgroup,26,0.03,226
+Safety,Serious adverse events,27,0.89,6714
+Safety,Treatment discontinuation,28,0.76,5733

@@ -1,0 +1,29 @@
+outcome_id,outcome,category,mean_score_overall,pct_critical_overall,n_groups_consensus,full_consensus,majority_consensus,in_cos
+1,HbA1c reduction,Glycaemic Control,8.3,0.952,5,True,True,True
+2,Fasting plasma glucose,Glycaemic Control,8.35,0.957,5,True,True,True
+3,Time in range (CGM),Glycaemic Control,8.3,0.956,5,True,True,True
+4,Hypoglycaemia episodes,Glycaemic Control,8.33,0.938,5,True,True,True
+5,Glucose variability,Glycaemic Control,8.26,0.949,5,True,True,True
+6,MACE (3-point),Cardiovascular,8.05,0.895,5,True,True,True
+7,Systolic blood pressure,Cardiovascular,8.03,0.903,5,True,True,True
+8,LDL cholesterol,Cardiovascular,8.12,0.879,5,True,True,True
+9,Heart failure hospitalisation,Cardiovascular,8.03,0.883,5,True,True,True
+10,Cardiovascular mortality,Cardiovascular,8.02,0.879,5,True,True,True
+11,eGFR change,Renal,7.48,0.695,3,False,True,True
+12,Albuminuria/proteinuria,Renal,7.35,0.631,1,False,False,False
+13,End-stage renal disease,Renal,7.38,0.675,3,False,True,True
+14,Renal composite endpoint,Renal,7.51,0.754,5,True,True,True
+15,Health-related QoL (EQ-5D),Patient-Reported,7.06,0.567,2,False,False,False
+16,Diabetes distress,Patient-Reported,7.34,0.616,2,False,False,False
+17,Treatment satisfaction,Patient-Reported,7.1,0.548,2,False,False,False
+18,Physical function,Patient-Reported,7.12,0.549,2,False,False,False
+19,Fatigue/energy,Patient-Reported,7.16,0.567,2,False,False,False
+20,Pain,Patient-Reported,7.2,0.571,2,False,False,False
+21,Outcome by ethnicity reported,EDI-Sensitive,6.45,0.34,1,False,False,False
+22,Outcome by SES reported,EDI-Sensitive,6.47,0.333,1,False,False,False
+23,Outcome by age subgroup (>70),EDI-Sensitive,6.48,0.31,1,False,False,False
+24,Outcome by sex/gender,EDI-Sensitive,6.4,0.352,2,False,False,False
+25,Access to intervention equity,EDI-Sensitive,6.4,0.341,1,False,False,False
+26,Adherence by EDI subgroup,EDI-Sensitive,6.39,0.305,0,False,False,False
+27,Serious adverse events,Safety,8.56,0.978,5,True,True,True
+28,Treatment discontinuation,Safety,8.52,0.978,5,True,True,True

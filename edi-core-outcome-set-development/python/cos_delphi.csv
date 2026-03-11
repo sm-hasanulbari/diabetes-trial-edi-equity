@@ -1,0 +1,421 @@
+outcome_id,outcome,category,stakeholder,round,mean_score,pct_critical,pct_not_imp,consensus,n_respondents
+1,HbA1c reduction,Glycaemic Control,Clinicians,1,7.66,0.738,0.0,True,42
+1,HbA1c reduction,Glycaemic Control,Clinicians,2,8.06,0.857,0.0,True,42
+1,HbA1c reduction,Glycaemic Control,Clinicians,3,8.3,0.976,0.0,True,42
+1,HbA1c reduction,Glycaemic Control,Patients,1,7.79,0.684,0.0,False,38
+1,HbA1c reduction,Glycaemic Control,Patients,2,8.19,0.895,0.0,True,38
+1,HbA1c reduction,Glycaemic Control,Patients,3,8.35,0.921,0.0,True,38
+1,HbA1c reduction,Glycaemic Control,Trialists,1,7.65,0.71,0.0,True,31
+1,HbA1c reduction,Glycaemic Control,Trialists,2,8.12,0.903,0.0,True,31
+1,HbA1c reduction,Glycaemic Control,Trialists,3,8.54,1.0,0.0,True,31
+1,HbA1c reduction,Glycaemic Control,Regulators,1,7.59,0.778,0.0,True,18
+1,HbA1c reduction,Glycaemic Control,Regulators,2,8.33,1.0,0.0,True,18
+1,HbA1c reduction,Glycaemic Control,Regulators,3,8.27,0.944,0.0,True,18
+1,HbA1c reduction,Glycaemic Control,Patient Advocates,1,7.91,0.792,0.0,True,24
+1,HbA1c reduction,Glycaemic Control,Patient Advocates,2,8.16,0.792,0.0,True,24
+1,HbA1c reduction,Glycaemic Control,Patient Advocates,3,8.03,0.917,0.0,True,24
+2,Fasting plasma glucose,Glycaemic Control,Clinicians,1,7.76,0.714,0.0,True,42
+2,Fasting plasma glucose,Glycaemic Control,Clinicians,2,7.84,0.833,0.0,True,42
+2,Fasting plasma glucose,Glycaemic Control,Clinicians,3,8.28,0.905,0.0,True,42
+2,Fasting plasma glucose,Glycaemic Control,Patients,1,8.05,0.763,0.0,True,38
+2,Fasting plasma glucose,Glycaemic Control,Patients,2,7.93,0.816,0.0,True,38
+2,Fasting plasma glucose,Glycaemic Control,Patients,3,8.22,0.947,0.0,True,38
+2,Fasting plasma glucose,Glycaemic Control,Trialists,1,7.71,0.774,0.0,True,31
+2,Fasting plasma glucose,Glycaemic Control,Trialists,2,7.92,0.839,0.0,True,31
+2,Fasting plasma glucose,Glycaemic Control,Trialists,3,8.47,0.935,0.0,True,31
+2,Fasting plasma glucose,Glycaemic Control,Regulators,1,7.9,0.833,0.0,True,18
+2,Fasting plasma glucose,Glycaemic Control,Regulators,2,8.36,0.944,0.0,True,18
+2,Fasting plasma glucose,Glycaemic Control,Regulators,3,8.21,1.0,0.0,True,18
+2,Fasting plasma glucose,Glycaemic Control,Patient Advocates,1,8.03,0.917,0.0,True,24
+2,Fasting plasma glucose,Glycaemic Control,Patient Advocates,2,8.41,0.958,0.0,True,24
+2,Fasting plasma glucose,Glycaemic Control,Patient Advocates,3,8.57,1.0,0.0,True,24
+3,Time in range (CGM),Glycaemic Control,Clinicians,1,7.85,0.786,0.0,True,42
+3,Time in range (CGM),Glycaemic Control,Clinicians,2,8.04,0.857,0.0,True,42
+3,Time in range (CGM),Glycaemic Control,Clinicians,3,8.45,0.976,0.0,True,42
+3,Time in range (CGM),Glycaemic Control,Patients,1,7.82,0.816,0.0,True,38
+3,Time in range (CGM),Glycaemic Control,Patients,2,8.32,0.921,0.0,True,38
+3,Time in range (CGM),Glycaemic Control,Patients,3,8.32,0.974,0.0,True,38
+3,Time in range (CGM),Glycaemic Control,Trialists,1,7.79,0.677,0.0,False,31
+3,Time in range (CGM),Glycaemic Control,Trialists,2,8.01,0.871,0.0,True,31
+3,Time in range (CGM),Glycaemic Control,Trialists,3,8.26,0.968,0.0,True,31
+3,Time in range (CGM),Glycaemic Control,Regulators,1,7.76,0.667,0.0,False,18
+3,Time in range (CGM),Glycaemic Control,Regulators,2,8.21,0.833,0.0,True,18
+3,Time in range (CGM),Glycaemic Control,Regulators,3,8.38,0.944,0.0,True,18
+3,Time in range (CGM),Glycaemic Control,Patient Advocates,1,7.8,0.75,0.0,True,24
+3,Time in range (CGM),Glycaemic Control,Patient Advocates,2,8.02,0.792,0.0,True,24
+3,Time in range (CGM),Glycaemic Control,Patient Advocates,3,8.07,0.917,0.0,True,24
+4,Hypoglycaemia episodes,Glycaemic Control,Clinicians,1,8.18,0.857,0.0,True,42
+4,Hypoglycaemia episodes,Glycaemic Control,Clinicians,2,8.32,0.881,0.0,True,42
+4,Hypoglycaemia episodes,Glycaemic Control,Clinicians,3,8.34,0.976,0.0,True,42
+4,Hypoglycaemia episodes,Glycaemic Control,Patients,1,7.71,0.763,0.0,True,38
+4,Hypoglycaemia episodes,Glycaemic Control,Patients,2,8.02,0.868,0.0,True,38
+4,Hypoglycaemia episodes,Glycaemic Control,Patients,3,8.2,0.921,0.0,True,38
+4,Hypoglycaemia episodes,Glycaemic Control,Trialists,1,8.04,0.806,0.0,True,31
+4,Hypoglycaemia episodes,Glycaemic Control,Trialists,2,8.28,0.968,0.0,True,31
+4,Hypoglycaemia episodes,Glycaemic Control,Trialists,3,8.41,1.0,0.0,True,31
+4,Hypoglycaemia episodes,Glycaemic Control,Regulators,1,8.11,0.889,0.0,True,18
+4,Hypoglycaemia episodes,Glycaemic Control,Regulators,2,8.11,0.833,0.0,True,18
+4,Hypoglycaemia episodes,Glycaemic Control,Regulators,3,8.42,0.833,0.0,True,18
+4,Hypoglycaemia episodes,Glycaemic Control,Patient Advocates,1,7.57,0.708,0.0,True,24
+4,Hypoglycaemia episodes,Glycaemic Control,Patient Advocates,2,7.9,0.792,0.0,True,24
+4,Hypoglycaemia episodes,Glycaemic Control,Patient Advocates,3,8.28,0.958,0.0,True,24
+5,Glucose variability,Glycaemic Control,Clinicians,1,7.87,0.786,0.0,True,42
+5,Glucose variability,Glycaemic Control,Clinicians,2,8.03,0.857,0.0,True,42
+5,Glucose variability,Glycaemic Control,Clinicians,3,8.26,0.905,0.0,True,42
+5,Glucose variability,Glycaemic Control,Patients,1,8.17,0.842,0.0,True,38
+5,Glucose variability,Glycaemic Control,Patients,2,7.93,0.842,0.0,True,38
+5,Glucose variability,Glycaemic Control,Patients,3,8.25,0.947,0.0,True,38
+5,Glucose variability,Glycaemic Control,Trialists,1,7.72,0.677,0.0,False,31
+5,Glucose variability,Glycaemic Control,Trialists,2,8.21,0.935,0.0,True,31
+5,Glucose variability,Glycaemic Control,Trialists,3,8.15,0.935,0.0,True,31
+5,Glucose variability,Glycaemic Control,Regulators,1,7.82,0.778,0.0,True,18
+5,Glucose variability,Glycaemic Control,Regulators,2,8.03,0.833,0.0,True,18
+5,Glucose variability,Glycaemic Control,Regulators,3,8.41,1.0,0.0,True,18
+5,Glucose variability,Glycaemic Control,Patient Advocates,1,7.8,0.75,0.0,True,24
+5,Glucose variability,Glycaemic Control,Patient Advocates,2,8.0,0.75,0.0,True,24
+5,Glucose variability,Glycaemic Control,Patient Advocates,3,8.21,0.958,0.0,True,24
+6,MACE (3-point),Cardiovascular,Clinicians,1,8.07,0.833,0.0,True,42
+6,MACE (3-point),Cardiovascular,Clinicians,2,7.75,0.762,0.0,True,42
+6,MACE (3-point),Cardiovascular,Clinicians,3,7.94,0.881,0.0,True,42
+6,MACE (3-point),Cardiovascular,Patients,1,7.67,0.737,0.0,True,38
+6,MACE (3-point),Cardiovascular,Patients,2,7.95,0.868,0.0,True,38
+6,MACE (3-point),Cardiovascular,Patients,3,8.09,0.921,0.0,True,38
+6,MACE (3-point),Cardiovascular,Trialists,1,7.39,0.613,0.0,False,31
+6,MACE (3-point),Cardiovascular,Trialists,2,7.91,0.806,0.0,True,31
+6,MACE (3-point),Cardiovascular,Trialists,3,8.13,0.935,0.0,True,31
+6,MACE (3-point),Cardiovascular,Regulators,1,7.76,0.722,0.0,True,18
+6,MACE (3-point),Cardiovascular,Regulators,2,7.87,0.667,0.0,False,18
+6,MACE (3-point),Cardiovascular,Regulators,3,7.88,0.778,0.0,True,18
+6,MACE (3-point),Cardiovascular,Patient Advocates,1,8.16,0.875,0.0,True,24
+6,MACE (3-point),Cardiovascular,Patient Advocates,2,7.99,0.833,0.0,True,24
+6,MACE (3-point),Cardiovascular,Patient Advocates,3,8.22,0.958,0.0,True,24
+7,Systolic blood pressure,Cardiovascular,Clinicians,1,7.38,0.667,0.0,False,42
+7,Systolic blood pressure,Cardiovascular,Clinicians,2,7.89,0.81,0.0,True,42
+7,Systolic blood pressure,Cardiovascular,Clinicians,3,7.89,0.952,0.0,True,42
+7,Systolic blood pressure,Cardiovascular,Patients,1,7.43,0.711,0.0,True,38
+7,Systolic blood pressure,Cardiovascular,Patients,2,7.96,0.842,0.0,True,38
+7,Systolic blood pressure,Cardiovascular,Patients,3,8.03,0.895,0.0,True,38
+7,Systolic blood pressure,Cardiovascular,Trialists,1,7.18,0.613,0.0,False,31
+7,Systolic blood pressure,Cardiovascular,Trialists,2,7.68,0.806,0.0,True,31
+7,Systolic blood pressure,Cardiovascular,Trialists,3,8.06,0.903,0.0,True,31
+7,Systolic blood pressure,Cardiovascular,Regulators,1,7.88,0.722,0.0,True,18
+7,Systolic blood pressure,Cardiovascular,Regulators,2,7.69,0.778,0.0,True,18
+7,Systolic blood pressure,Cardiovascular,Regulators,3,8.08,0.889,0.0,True,18
+7,Systolic blood pressure,Cardiovascular,Patient Advocates,1,7.03,0.5,0.0,False,24
+7,Systolic blood pressure,Cardiovascular,Patient Advocates,2,7.7,0.708,0.0,True,24
+7,Systolic blood pressure,Cardiovascular,Patient Advocates,3,8.08,0.875,0.0,True,24
+8,LDL cholesterol,Cardiovascular,Clinicians,1,7.78,0.714,0.0,True,42
+8,LDL cholesterol,Cardiovascular,Clinicians,2,7.87,0.738,0.0,True,42
+8,LDL cholesterol,Cardiovascular,Clinicians,3,8.1,0.905,0.0,True,42
+8,LDL cholesterol,Cardiovascular,Patients,1,7.4,0.658,0.0,False,38
+8,LDL cholesterol,Cardiovascular,Patients,2,7.95,0.816,0.0,True,38
+8,LDL cholesterol,Cardiovascular,Patients,3,8.1,0.868,0.0,True,38
+8,LDL cholesterol,Cardiovascular,Trialists,1,7.36,0.71,0.0,True,31
+8,LDL cholesterol,Cardiovascular,Trialists,2,7.83,0.806,0.0,True,31
+8,LDL cholesterol,Cardiovascular,Trialists,3,8.04,0.871,0.0,True,31
+8,LDL cholesterol,Cardiovascular,Regulators,1,7.38,0.667,0.0,False,18
+8,LDL cholesterol,Cardiovascular,Regulators,2,8.06,0.778,0.0,True,18
+8,LDL cholesterol,Cardiovascular,Regulators,3,8.14,0.833,0.0,True,18
+8,LDL cholesterol,Cardiovascular,Patient Advocates,1,7.59,0.667,0.0,False,24
+8,LDL cholesterol,Cardiovascular,Patient Advocates,2,7.75,0.75,0.0,True,24
+8,LDL cholesterol,Cardiovascular,Patient Advocates,3,8.22,0.917,0.0,True,24
+9,Heart failure hospitalisation,Cardiovascular,Clinicians,1,7.84,0.786,0.0,True,42
+9,Heart failure hospitalisation,Cardiovascular,Clinicians,2,7.63,0.738,0.0,True,42
+9,Heart failure hospitalisation,Cardiovascular,Clinicians,3,7.93,0.905,0.0,True,42
+9,Heart failure hospitalisation,Cardiovascular,Patients,1,7.19,0.579,0.0,False,38
+9,Heart failure hospitalisation,Cardiovascular,Patients,2,7.7,0.789,0.0,True,38
+9,Heart failure hospitalisation,Cardiovascular,Patients,3,8.02,0.842,0.0,True,38
+9,Heart failure hospitalisation,Cardiovascular,Trialists,1,7.83,0.774,0.0,True,31
+9,Heart failure hospitalisation,Cardiovascular,Trialists,2,7.87,0.839,0.0,True,31
+9,Heart failure hospitalisation,Cardiovascular,Trialists,3,7.91,0.806,0.0,True,31
+9,Heart failure hospitalisation,Cardiovascular,Regulators,1,7.11,0.611,0.0,False,18
+9,Heart failure hospitalisation,Cardiovascular,Regulators,2,7.67,0.778,0.0,True,18
+9,Heart failure hospitalisation,Cardiovascular,Regulators,3,8.28,0.944,0.0,True,18
+9,Heart failure hospitalisation,Cardiovascular,Patient Advocates,1,7.43,0.667,0.0,False,24
+9,Heart failure hospitalisation,Cardiovascular,Patient Advocates,2,7.91,0.833,0.0,True,24
+9,Heart failure hospitalisation,Cardiovascular,Patient Advocates,3,8.01,0.917,0.0,True,24
+10,Cardiovascular mortality,Cardiovascular,Clinicians,1,7.67,0.833,0.0,True,42
+10,Cardiovascular mortality,Cardiovascular,Clinicians,2,7.43,0.69,0.0,False,42
+10,Cardiovascular mortality,Cardiovascular,Clinicians,3,8.06,0.833,0.0,True,42
+10,Cardiovascular mortality,Cardiovascular,Patients,1,7.54,0.711,0.0,True,38
+10,Cardiovascular mortality,Cardiovascular,Patients,2,7.64,0.684,0.0,False,38
+10,Cardiovascular mortality,Cardiovascular,Patients,3,7.93,0.842,0.0,True,38
+10,Cardiovascular mortality,Cardiovascular,Trialists,1,7.65,0.645,0.0,False,31
+10,Cardiovascular mortality,Cardiovascular,Trialists,2,7.49,0.645,0.0,False,31
+10,Cardiovascular mortality,Cardiovascular,Trialists,3,8.12,0.871,0.0,True,31
+10,Cardiovascular mortality,Cardiovascular,Regulators,1,8.01,0.778,0.0,True,18
+10,Cardiovascular mortality,Cardiovascular,Regulators,2,7.66,0.667,0.0,False,18
+10,Cardiovascular mortality,Cardiovascular,Regulators,3,7.87,0.889,0.0,True,18
+10,Cardiovascular mortality,Cardiovascular,Patient Advocates,1,7.95,0.75,0.0,True,24
+10,Cardiovascular mortality,Cardiovascular,Patient Advocates,2,7.88,0.792,0.0,True,24
+10,Cardiovascular mortality,Cardiovascular,Patient Advocates,3,8.11,0.958,0.0,True,24
+11,eGFR change,Renal,Clinicians,1,7.18,0.571,0.024,False,42
+11,eGFR change,Renal,Clinicians,2,7.16,0.619,0.0,False,42
+11,eGFR change,Renal,Clinicians,3,7.57,0.762,0.0,True,42
+11,eGFR change,Renal,Patients,1,7.24,0.658,0.026,False,38
+11,eGFR change,Renal,Patients,2,7.06,0.579,0.0,False,38
+11,eGFR change,Renal,Patients,3,7.33,0.684,0.0,False,38
+11,eGFR change,Renal,Trialists,1,7.2,0.581,0.0,False,31
+11,eGFR change,Renal,Trialists,2,7.2,0.516,0.0,False,31
+11,eGFR change,Renal,Trialists,3,7.5,0.71,0.0,True,31
+11,eGFR change,Renal,Regulators,1,7.38,0.611,0.0,False,18
+11,eGFR change,Renal,Regulators,2,7.52,0.722,0.0,True,18
+11,eGFR change,Renal,Regulators,3,7.33,0.611,0.0,False,18
+11,eGFR change,Renal,Patient Advocates,1,7.26,0.667,0.0,False,24
+11,eGFR change,Renal,Patient Advocates,2,7.23,0.625,0.0,False,24
+11,eGFR change,Renal,Patient Advocates,3,7.65,0.708,0.0,True,24
+12,Albuminuria/proteinuria,Renal,Clinicians,1,7.16,0.595,0.0,False,42
+12,Albuminuria/proteinuria,Renal,Clinicians,2,7.28,0.667,0.0,False,42
+12,Albuminuria/proteinuria,Renal,Clinicians,3,7.44,0.714,0.0,True,42
+12,Albuminuria/proteinuria,Renal,Patients,1,7.02,0.5,0.0,False,38
+12,Albuminuria/proteinuria,Renal,Patients,2,7.48,0.684,0.0,False,38
+12,Albuminuria/proteinuria,Renal,Patients,3,7.47,0.605,0.0,False,38
+12,Albuminuria/proteinuria,Renal,Trialists,1,7.2,0.484,0.0,False,31
+12,Albuminuria/proteinuria,Renal,Trialists,2,7.03,0.516,0.0,False,31
+12,Albuminuria/proteinuria,Renal,Trialists,3,7.3,0.613,0.0,False,31
+12,Albuminuria/proteinuria,Renal,Regulators,1,6.85,0.611,0.0,False,18
+12,Albuminuria/proteinuria,Renal,Regulators,2,7.04,0.444,0.0,False,18
+12,Albuminuria/proteinuria,Renal,Regulators,3,7.27,0.556,0.0,False,18
+12,Albuminuria/proteinuria,Renal,Patient Advocates,1,7.07,0.458,0.0,False,24
+12,Albuminuria/proteinuria,Renal,Patient Advocates,2,7.54,0.75,0.0,True,24
+12,Albuminuria/proteinuria,Renal,Patient Advocates,3,7.29,0.667,0.0,False,24
+13,End-stage renal disease,Renal,Clinicians,1,7.29,0.524,0.0,False,42
+13,End-stage renal disease,Renal,Clinicians,2,7.29,0.619,0.0,False,42
+13,End-stage renal disease,Renal,Clinicians,3,7.51,0.81,0.0,True,42
+13,End-stage renal disease,Renal,Patients,1,7.15,0.579,0.026,False,38
+13,End-stage renal disease,Renal,Patients,2,7.14,0.526,0.0,False,38
+13,End-stage renal disease,Renal,Patients,3,7.33,0.711,0.0,True,38
+13,End-stage renal disease,Renal,Trialists,1,6.91,0.516,0.0,False,31
+13,End-stage renal disease,Renal,Trialists,2,7.29,0.71,0.0,True,31
+13,End-stage renal disease,Renal,Trialists,3,7.35,0.645,0.0,False,31
+13,End-stage renal disease,Renal,Regulators,1,6.14,0.222,0.0,False,18
+13,End-stage renal disease,Renal,Regulators,2,6.94,0.278,0.0,False,18
+13,End-stage renal disease,Renal,Regulators,3,7.1,0.5,0.0,False,18
+13,End-stage renal disease,Renal,Patient Advocates,1,6.97,0.542,0.042,False,24
+13,End-stage renal disease,Renal,Patient Advocates,2,7.37,0.667,0.0,False,24
+13,End-stage renal disease,Renal,Patient Advocates,3,7.59,0.708,0.0,True,24
+14,Renal composite endpoint,Renal,Clinicians,1,7.26,0.595,0.0,False,42
+14,Renal composite endpoint,Renal,Clinicians,2,7.4,0.643,0.0,False,42
+14,Renal composite endpoint,Renal,Clinicians,3,7.71,0.833,0.0,True,42
+14,Renal composite endpoint,Renal,Patients,1,7.05,0.526,0.0,False,38
+14,Renal composite endpoint,Renal,Patients,2,7.25,0.605,0.0,False,38
+14,Renal composite endpoint,Renal,Patients,3,7.46,0.711,0.0,True,38
+14,Renal composite endpoint,Renal,Trialists,1,6.96,0.516,0.0,False,31
+14,Renal composite endpoint,Renal,Trialists,2,7.42,0.613,0.0,False,31
+14,Renal composite endpoint,Renal,Trialists,3,7.48,0.71,0.0,True,31
+14,Renal composite endpoint,Renal,Regulators,1,7.39,0.611,0.0,False,18
+14,Renal composite endpoint,Renal,Regulators,2,7.48,0.667,0.0,False,18
+14,Renal composite endpoint,Renal,Regulators,3,7.4,0.722,0.0,True,18
+14,Renal composite endpoint,Renal,Patient Advocates,1,7.07,0.458,0.0,False,24
+14,Renal composite endpoint,Renal,Patient Advocates,2,7.13,0.583,0.0,False,24
+14,Renal composite endpoint,Renal,Patient Advocates,3,7.52,0.792,0.0,True,24
+15,Health-related QoL (EQ-5D),Patient-Reported,Clinicians,1,5.75,0.238,0.024,False,42
+15,Health-related QoL (EQ-5D),Patient-Reported,Clinicians,2,6.56,0.452,0.0,False,42
+15,Health-related QoL (EQ-5D),Patient-Reported,Clinicians,3,6.65,0.357,0.0,False,42
+15,Health-related QoL (EQ-5D),Patient-Reported,Patients,1,7.62,0.763,0.0,True,38
+15,Health-related QoL (EQ-5D),Patient-Reported,Patients,2,7.53,0.684,0.0,False,38
+15,Health-related QoL (EQ-5D),Patient-Reported,Patients,3,7.71,0.868,0.0,True,38
+15,Health-related QoL (EQ-5D),Patient-Reported,Trialists,1,6.24,0.258,0.0,False,31
+15,Health-related QoL (EQ-5D),Patient-Reported,Trialists,2,6.61,0.419,0.0,False,31
+15,Health-related QoL (EQ-5D),Patient-Reported,Trialists,3,6.57,0.387,0.0,False,31
+15,Health-related QoL (EQ-5D),Patient-Reported,Regulators,1,6.51,0.389,0.0,False,18
+15,Health-related QoL (EQ-5D),Patient-Reported,Regulators,2,6.63,0.333,0.0,False,18
+15,Health-related QoL (EQ-5D),Patient-Reported,Regulators,3,6.61,0.389,0.0,False,18
+15,Health-related QoL (EQ-5D),Patient-Reported,Patient Advocates,1,7.04,0.5,0.0,False,24
+15,Health-related QoL (EQ-5D),Patient-Reported,Patient Advocates,2,7.51,0.667,0.0,False,24
+15,Health-related QoL (EQ-5D),Patient-Reported,Patient Advocates,3,7.77,0.833,0.0,True,24
+16,Diabetes distress,Patient-Reported,Clinicians,1,6.1,0.286,0.0,False,42
+16,Diabetes distress,Patient-Reported,Clinicians,2,6.57,0.381,0.0,False,42
+16,Diabetes distress,Patient-Reported,Clinicians,3,6.98,0.524,0.0,False,42
+16,Diabetes distress,Patient-Reported,Patients,1,7.3,0.579,0.0,False,38
+16,Diabetes distress,Patient-Reported,Patients,2,7.8,0.737,0.0,True,38
+16,Diabetes distress,Patient-Reported,Patients,3,7.74,0.842,0.0,True,38
+16,Diabetes distress,Patient-Reported,Trialists,1,6.11,0.355,0.065,False,31
+16,Diabetes distress,Patient-Reported,Trialists,2,6.53,0.29,0.0,False,31
+16,Diabetes distress,Patient-Reported,Trialists,3,6.84,0.355,0.0,False,31
+16,Diabetes distress,Patient-Reported,Regulators,1,6.35,0.333,0.056,False,18
+16,Diabetes distress,Patient-Reported,Regulators,2,6.22,0.222,0.0,False,18
+16,Diabetes distress,Patient-Reported,Regulators,3,7.04,0.444,0.0,False,18
+16,Diabetes distress,Patient-Reported,Patient Advocates,1,7.51,0.625,0.0,False,24
+16,Diabetes distress,Patient-Reported,Patient Advocates,2,7.26,0.5,0.0,False,24
+16,Diabetes distress,Patient-Reported,Patient Advocates,3,8.1,0.917,0.0,True,24
+17,Treatment satisfaction,Patient-Reported,Clinicians,1,6.54,0.381,0.0,False,42
+17,Treatment satisfaction,Patient-Reported,Clinicians,2,6.57,0.381,0.0,False,42
+17,Treatment satisfaction,Patient-Reported,Clinicians,3,6.59,0.31,0.0,False,42
+17,Treatment satisfaction,Patient-Reported,Patients,1,7.33,0.658,0.0,False,38
+17,Treatment satisfaction,Patient-Reported,Patients,2,7.6,0.737,0.0,True,38
+17,Treatment satisfaction,Patient-Reported,Patients,3,7.76,0.737,0.0,True,38
+17,Treatment satisfaction,Patient-Reported,Trialists,1,6.02,0.226,0.032,False,31
+17,Treatment satisfaction,Patient-Reported,Trialists,2,6.53,0.419,0.0,False,31
+17,Treatment satisfaction,Patient-Reported,Trialists,3,6.64,0.387,0.0,False,31
+17,Treatment satisfaction,Patient-Reported,Regulators,1,6.33,0.444,0.056,False,18
+17,Treatment satisfaction,Patient-Reported,Regulators,2,6.56,0.389,0.0,False,18
+17,Treatment satisfaction,Patient-Reported,Regulators,3,6.8,0.389,0.0,False,18
+17,Treatment satisfaction,Patient-Reported,Patient Advocates,1,7.85,0.792,0.0,True,24
+17,Treatment satisfaction,Patient-Reported,Patient Advocates,2,7.9,0.75,0.0,True,24
+17,Treatment satisfaction,Patient-Reported,Patient Advocates,3,7.73,0.917,0.0,True,24
+18,Physical function,Patient-Reported,Clinicians,1,6.54,0.31,0.0,False,42
+18,Physical function,Patient-Reported,Clinicians,2,6.64,0.381,0.0,False,42
+18,Physical function,Patient-Reported,Clinicians,3,6.61,0.357,0.0,False,42
+18,Physical function,Patient-Reported,Patients,1,7.63,0.711,0.0,True,38
+18,Physical function,Patient-Reported,Patients,2,7.91,0.816,0.0,True,38
+18,Physical function,Patient-Reported,Patients,3,7.72,0.789,0.0,True,38
+18,Physical function,Patient-Reported,Trialists,1,6.25,0.29,0.0,False,31
+18,Physical function,Patient-Reported,Trialists,2,6.38,0.323,0.0,False,31
+18,Physical function,Patient-Reported,Trialists,3,6.53,0.323,0.0,False,31
+18,Physical function,Patient-Reported,Regulators,1,6.08,0.278,0.0,False,18
+18,Physical function,Patient-Reported,Regulators,2,6.78,0.444,0.0,False,18
+18,Physical function,Patient-Reported,Regulators,3,6.83,0.444,0.0,False,18
+18,Physical function,Patient-Reported,Patient Advocates,1,7.39,0.625,0.042,False,24
+18,Physical function,Patient-Reported,Patient Advocates,2,7.57,0.75,0.0,True,24
+18,Physical function,Patient-Reported,Patient Advocates,3,7.9,0.833,0.0,True,24
+19,Fatigue/energy,Patient-Reported,Clinicians,1,6.5,0.405,0.024,False,42
+19,Fatigue/energy,Patient-Reported,Clinicians,2,6.67,0.357,0.0,False,42
+19,Fatigue/energy,Patient-Reported,Clinicians,3,6.75,0.381,0.0,False,42
+19,Fatigue/energy,Patient-Reported,Patients,1,7.54,0.684,0.0,False,38
+19,Fatigue/energy,Patient-Reported,Patients,2,7.48,0.605,0.0,False,38
+19,Fatigue/energy,Patient-Reported,Patients,3,7.92,0.868,0.0,True,38
+19,Fatigue/energy,Patient-Reported,Trialists,1,6.22,0.29,0.0,False,31
+19,Fatigue/energy,Patient-Reported,Trialists,2,6.96,0.452,0.0,False,31
+19,Fatigue/energy,Patient-Reported,Trialists,3,6.6,0.419,0.0,False,31
+19,Fatigue/energy,Patient-Reported,Regulators,1,6.39,0.389,0.056,False,18
+19,Fatigue/energy,Patient-Reported,Regulators,2,6.66,0.444,0.0,False,18
+19,Fatigue/energy,Patient-Reported,Regulators,3,6.62,0.333,0.0,False,18
+19,Fatigue/energy,Patient-Reported,Patient Advocates,1,7.74,0.75,0.0,True,24
+19,Fatigue/energy,Patient-Reported,Patient Advocates,2,7.98,0.833,0.0,True,24
+19,Fatigue/energy,Patient-Reported,Patient Advocates,3,7.89,0.833,0.0,True,24
+20,Pain,Patient-Reported,Clinicians,1,6.44,0.31,0.0,False,42
+20,Pain,Patient-Reported,Clinicians,2,6.58,0.429,0.0,False,42
+20,Pain,Patient-Reported,Clinicians,3,6.68,0.357,0.0,False,42
+20,Pain,Patient-Reported,Patients,1,7.1,0.605,0.0,False,38
+20,Pain,Patient-Reported,Patients,2,7.62,0.711,0.0,True,38
+20,Pain,Patient-Reported,Patients,3,7.83,0.868,0.0,True,38
+20,Pain,Patient-Reported,Trialists,1,6.83,0.419,0.0,False,31
+20,Pain,Patient-Reported,Trialists,2,6.42,0.323,0.0,False,31
+20,Pain,Patient-Reported,Trialists,3,6.75,0.355,0.0,False,31
+20,Pain,Patient-Reported,Regulators,1,6.31,0.389,0.0,False,18
+20,Pain,Patient-Reported,Regulators,2,6.9,0.389,0.0,False,18
+20,Pain,Patient-Reported,Regulators,3,6.78,0.444,0.0,False,18
+20,Pain,Patient-Reported,Patient Advocates,1,8.08,0.875,0.0,True,24
+20,Pain,Patient-Reported,Patient Advocates,2,7.65,0.917,0.0,True,24
+20,Pain,Patient-Reported,Patient Advocates,3,7.97,0.833,0.0,True,24
+21,Outcome by ethnicity reported,EDI-Sensitive,Clinicians,1,4.87,0.095,0.167,False,42
+21,Outcome by ethnicity reported,EDI-Sensitive,Clinicians,2,4.93,0.071,0.024,False,42
+21,Outcome by ethnicity reported,EDI-Sensitive,Clinicians,3,5.36,0.048,0.0,False,42
+21,Outcome by ethnicity reported,EDI-Sensitive,Patients,1,7.12,0.526,0.0,False,38
+21,Outcome by ethnicity reported,EDI-Sensitive,Patients,2,7.25,0.658,0.0,False,38
+21,Outcome by ethnicity reported,EDI-Sensitive,Patients,3,7.44,0.711,0.0,True,38
+21,Outcome by ethnicity reported,EDI-Sensitive,Trialists,1,5.7,0.226,0.032,False,31
+21,Outcome by ethnicity reported,EDI-Sensitive,Trialists,2,6.09,0.161,0.0,False,31
+21,Outcome by ethnicity reported,EDI-Sensitive,Trialists,3,6.28,0.258,0.0,False,31
+21,Outcome by ethnicity reported,EDI-Sensitive,Regulators,1,5.86,0.222,0.0,False,18
+21,Outcome by ethnicity reported,EDI-Sensitive,Regulators,2,5.56,0.111,0.0,False,18
+21,Outcome by ethnicity reported,EDI-Sensitive,Regulators,3,5.65,0.056,0.0,False,18
+21,Outcome by ethnicity reported,EDI-Sensitive,Patient Advocates,1,6.68,0.458,0.042,False,24
+21,Outcome by ethnicity reported,EDI-Sensitive,Patient Advocates,2,7.09,0.542,0.0,False,24
+21,Outcome by ethnicity reported,EDI-Sensitive,Patient Advocates,3,7.5,0.625,0.0,False,24
+22,Outcome by SES reported,EDI-Sensitive,Clinicians,1,5.27,0.143,0.071,False,42
+22,Outcome by SES reported,EDI-Sensitive,Clinicians,2,5.14,0.048,0.024,False,42
+22,Outcome by SES reported,EDI-Sensitive,Clinicians,3,5.28,0.0,0.0,False,42
+22,Outcome by SES reported,EDI-Sensitive,Patients,1,7.01,0.605,0.026,False,38
+22,Outcome by SES reported,EDI-Sensitive,Patients,2,6.99,0.5,0.0,False,38
+22,Outcome by SES reported,EDI-Sensitive,Patients,3,7.41,0.711,0.0,True,38
+22,Outcome by SES reported,EDI-Sensitive,Trialists,1,6.21,0.323,0.0,False,31
+22,Outcome by SES reported,EDI-Sensitive,Trialists,2,5.94,0.161,0.0,False,31
+22,Outcome by SES reported,EDI-Sensitive,Trialists,3,6.25,0.161,0.0,False,31
+22,Outcome by SES reported,EDI-Sensitive,Regulators,1,4.96,0.111,0.111,False,18
+22,Outcome by SES reported,EDI-Sensitive,Regulators,2,5.61,0.111,0.0,False,18
+22,Outcome by SES reported,EDI-Sensitive,Regulators,3,6.06,0.167,0.0,False,18
+22,Outcome by SES reported,EDI-Sensitive,Patient Advocates,1,7.06,0.542,0.0,False,24
+22,Outcome by SES reported,EDI-Sensitive,Patient Advocates,2,6.99,0.5,0.0,False,24
+22,Outcome by SES reported,EDI-Sensitive,Patient Advocates,3,7.35,0.625,0.0,False,24
+23,Outcome by age subgroup (>70),EDI-Sensitive,Clinicians,1,4.68,0.095,0.095,False,42
+23,Outcome by age subgroup (>70),EDI-Sensitive,Clinicians,2,5.16,0.071,0.024,False,42
+23,Outcome by age subgroup (>70),EDI-Sensitive,Clinicians,3,5.52,0.048,0.024,False,42
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patients,1,7.03,0.526,0.0,False,38
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patients,2,7.32,0.711,0.0,True,38
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patients,3,7.59,0.711,0.0,True,38
+23,Outcome by age subgroup (>70),EDI-Sensitive,Trialists,1,5.51,0.129,0.065,False,31
+23,Outcome by age subgroup (>70),EDI-Sensitive,Trialists,2,6.19,0.258,0.0,False,31
+23,Outcome by age subgroup (>70),EDI-Sensitive,Trialists,3,6.29,0.194,0.0,False,31
+23,Outcome by age subgroup (>70),EDI-Sensitive,Regulators,1,5.35,0.056,0.0,False,18
+23,Outcome by age subgroup (>70),EDI-Sensitive,Regulators,2,5.4,0.111,0.0,False,18
+23,Outcome by age subgroup (>70),EDI-Sensitive,Regulators,3,5.94,0.056,0.0,False,18
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patient Advocates,1,6.96,0.542,0.0,False,24
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patient Advocates,2,7.03,0.542,0.0,False,24
+23,Outcome by age subgroup (>70),EDI-Sensitive,Patient Advocates,3,7.05,0.542,0.0,False,24
+24,Outcome by sex/gender,EDI-Sensitive,Clinicians,1,5.14,0.119,0.071,False,42
+24,Outcome by sex/gender,EDI-Sensitive,Clinicians,2,5.31,0.024,0.024,False,42
+24,Outcome by sex/gender,EDI-Sensitive,Clinicians,3,5.38,0.024,0.0,False,42
+24,Outcome by sex/gender,EDI-Sensitive,Patients,1,7.01,0.474,0.0,False,38
+24,Outcome by sex/gender,EDI-Sensitive,Patients,2,6.64,0.447,0.0,False,38
+24,Outcome by sex/gender,EDI-Sensitive,Patients,3,7.59,0.737,0.0,True,38
+24,Outcome by sex/gender,EDI-Sensitive,Trialists,1,5.79,0.097,0.0,False,31
+24,Outcome by sex/gender,EDI-Sensitive,Trialists,2,5.85,0.161,0.0,False,31
+24,Outcome by sex/gender,EDI-Sensitive,Trialists,3,6.21,0.194,0.0,False,31
+24,Outcome by sex/gender,EDI-Sensitive,Regulators,1,4.82,0.0,0.056,False,18
+24,Outcome by sex/gender,EDI-Sensitive,Regulators,2,5.29,0.111,0.0,False,18
+24,Outcome by sex/gender,EDI-Sensitive,Regulators,3,5.38,0.056,0.0,False,18
+24,Outcome by sex/gender,EDI-Sensitive,Patient Advocates,1,6.92,0.542,0.042,False,24
+24,Outcome by sex/gender,EDI-Sensitive,Patient Advocates,2,7.59,0.833,0.0,True,24
+24,Outcome by sex/gender,EDI-Sensitive,Patient Advocates,3,7.43,0.75,0.0,True,24
+25,Access to intervention equity,EDI-Sensitive,Clinicians,1,5.09,0.119,0.095,False,42
+25,Access to intervention equity,EDI-Sensitive,Clinicians,2,5.21,0.095,0.024,False,42
+25,Access to intervention equity,EDI-Sensitive,Clinicians,3,5.33,0.0,0.0,False,42
+25,Access to intervention equity,EDI-Sensitive,Patients,1,7.14,0.526,0.0,False,38
+25,Access to intervention equity,EDI-Sensitive,Patients,2,7.29,0.632,0.0,False,38
+25,Access to intervention equity,EDI-Sensitive,Patients,3,7.44,0.842,0.0,True,38
+25,Access to intervention equity,EDI-Sensitive,Trialists,1,5.99,0.29,0.032,False,31
+25,Access to intervention equity,EDI-Sensitive,Trialists,2,5.63,0.161,0.0,False,31
+25,Access to intervention equity,EDI-Sensitive,Trialists,3,6.4,0.194,0.0,False,31
+25,Access to intervention equity,EDI-Sensitive,Regulators,1,5.8,0.222,0.0,False,18
+25,Access to intervention equity,EDI-Sensitive,Regulators,2,5.24,0.111,0.0,False,18
+25,Access to intervention equity,EDI-Sensitive,Regulators,3,5.45,0.0,0.0,False,18
+25,Access to intervention equity,EDI-Sensitive,Patient Advocates,1,6.73,0.458,0.042,False,24
+25,Access to intervention equity,EDI-Sensitive,Patient Advocates,2,6.94,0.542,0.0,False,24
+25,Access to intervention equity,EDI-Sensitive,Patient Advocates,3,7.39,0.667,0.0,False,24
+26,Adherence by EDI subgroup,EDI-Sensitive,Clinicians,1,5.26,0.095,0.024,False,42
+26,Adherence by EDI subgroup,EDI-Sensitive,Clinicians,2,5.42,0.024,0.048,False,42
+26,Adherence by EDI subgroup,EDI-Sensitive,Clinicians,3,5.42,0.048,0.0,False,42
+26,Adherence by EDI subgroup,EDI-Sensitive,Patients,1,7.17,0.526,0.0,False,38
+26,Adherence by EDI subgroup,EDI-Sensitive,Patients,2,7.2,0.605,0.0,False,38
+26,Adherence by EDI subgroup,EDI-Sensitive,Patients,3,7.5,0.658,0.0,False,38
+26,Adherence by EDI subgroup,EDI-Sensitive,Trialists,1,5.96,0.226,0.0,False,31
+26,Adherence by EDI subgroup,EDI-Sensitive,Trialists,2,5.92,0.161,0.032,False,31
+26,Adherence by EDI subgroup,EDI-Sensitive,Trialists,3,6.05,0.194,0.0,False,31
+26,Adherence by EDI subgroup,EDI-Sensitive,Regulators,1,5.76,0.167,0.0,False,18
+26,Adherence by EDI subgroup,EDI-Sensitive,Regulators,2,5.51,0.111,0.0,False,18
+26,Adherence by EDI subgroup,EDI-Sensitive,Regulators,3,5.52,0.0,0.0,False,18
+26,Adherence by EDI subgroup,EDI-Sensitive,Patient Advocates,1,6.93,0.5,0.0,False,24
+26,Adherence by EDI subgroup,EDI-Sensitive,Patient Advocates,2,6.88,0.375,0.0,False,24
+26,Adherence by EDI subgroup,EDI-Sensitive,Patient Advocates,3,7.46,0.625,0.0,False,24
+27,Serious adverse events,Safety,Clinicians,1,7.76,0.762,0.0,True,42
+27,Serious adverse events,Safety,Clinicians,2,8.23,0.881,0.0,True,42
+27,Serious adverse events,Safety,Clinicians,3,8.62,0.976,0.0,True,42
+27,Serious adverse events,Safety,Patients,1,8.27,0.868,0.0,True,38
+27,Serious adverse events,Safety,Patients,2,8.46,0.974,0.0,True,38
+27,Serious adverse events,Safety,Patients,3,8.5,0.947,0.0,True,38
+27,Serious adverse events,Safety,Trialists,1,8.02,0.806,0.0,True,31
+27,Serious adverse events,Safety,Trialists,2,8.35,0.903,0.0,True,31
+27,Serious adverse events,Safety,Trialists,3,8.48,0.968,0.0,True,31
+27,Serious adverse events,Safety,Regulators,1,8.05,0.833,0.0,True,18
+27,Serious adverse events,Safety,Regulators,2,8.36,0.889,0.0,True,18
+27,Serious adverse events,Safety,Regulators,3,8.68,1.0,0.0,True,18
+27,Serious adverse events,Safety,Patient Advocates,1,7.77,0.792,0.0,True,24
+27,Serious adverse events,Safety,Patient Advocates,2,8.28,0.875,0.0,True,24
+27,Serious adverse events,Safety,Patient Advocates,3,8.53,1.0,0.0,True,24
+28,Treatment discontinuation,Safety,Clinicians,1,7.91,0.833,0.0,True,42
+28,Treatment discontinuation,Safety,Clinicians,2,8.32,0.929,0.0,True,42
+28,Treatment discontinuation,Safety,Clinicians,3,8.49,1.0,0.0,True,42
+28,Treatment discontinuation,Safety,Patients,1,7.93,0.842,0.0,True,38
+28,Treatment discontinuation,Safety,Patients,2,8.11,0.895,0.0,True,38
+28,Treatment discontinuation,Safety,Patients,3,8.59,0.947,0.0,True,38
+28,Treatment discontinuation,Safety,Trialists,1,8.32,0.871,0.0,True,31
+28,Treatment discontinuation,Safety,Trialists,2,8.26,0.871,0.0,True,31
+28,Treatment discontinuation,Safety,Trialists,3,8.49,1.0,0.0,True,31
+28,Treatment discontinuation,Safety,Regulators,1,8.06,0.833,0.0,True,18
+28,Treatment discontinuation,Safety,Regulators,2,8.27,0.889,0.0,True,18
+28,Treatment discontinuation,Safety,Regulators,3,8.6,0.944,0.0,True,18
+28,Treatment discontinuation,Safety,Patient Advocates,1,7.99,0.75,0.0,True,24
+28,Treatment discontinuation,Safety,Patient Advocates,2,8.32,0.917,0.0,True,24
+28,Treatment discontinuation,Safety,Patient Advocates,3,8.44,1.0,0.0,True,24

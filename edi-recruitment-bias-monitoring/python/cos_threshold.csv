@@ -1,0 +1,37 @@
+threshold,category,n_included,n_total,pct_included
+0.5,Glycaemic Control,5,5,100.0
+0.5,Cardiovascular,5,5,100.0
+0.5,Renal,3,4,75.0
+0.5,Patient-Reported,3,6,50.0
+0.5,EDI-Sensitive,4,6,66.7
+0.5,Safety,2,2,100.0
+0.6,Glycaemic Control,5,5,100.0
+0.6,Cardiovascular,4,5,80.0
+0.6,Renal,3,4,75.0
+0.6,Patient-Reported,2,6,33.3
+0.6,EDI-Sensitive,3,6,50.0
+0.6,Safety,2,2,100.0
+0.67,Glycaemic Control,5,5,100.0
+0.67,Cardiovascular,4,5,80.0
+0.67,Renal,2,4,50.0
+0.67,Patient-Reported,1,6,16.7
+0.67,EDI-Sensitive,1,6,16.7
+0.67,Safety,2,2,100.0
+0.7,Glycaemic Control,5,5,100.0
+0.7,Cardiovascular,3,5,60.0
+0.7,Renal,2,4,50.0
+0.7,Patient-Reported,1,6,16.7
+0.7,EDI-Sensitive,1,6,16.7
+0.7,Safety,2,2,100.0
+0.75,Glycaemic Control,5,5,100.0
+0.75,Cardiovascular,3,5,60.0
+0.75,Renal,1,4,25.0
+0.75,Patient-Reported,1,6,16.7
+0.75,EDI-Sensitive,0,6,0.0
+0.75,Safety,2,2,100.0
+0.8,Glycaemic Control,4,5,80.0
+0.8,Cardiovascular,2,5,40.0
+0.8,Renal,1,4,25.0
+0.8,Patient-Reported,0,6,0.0
+0.8,EDI-Sensitive,0,6,0.0
+0.8,Safety,2,2,100.0

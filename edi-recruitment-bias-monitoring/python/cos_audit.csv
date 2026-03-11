@@ -1,0 +1,43 @@
+trial_type,domain,completeness,gap,edi_domain
+Phase III RCT (industry),Glycaemic Control,95,5,False
+Phase III RCT (industry),Cardiovascular,88,12,False
+Phase III RCT (industry),Renal,72,28,False
+Phase III RCT (industry),Patient-Reported,34,66,False
+Phase III RCT (industry),EDI-Sensitive,12,88,True
+Phase III RCT (industry),Safety,91,9,False
+Phase III RCT (academic),Glycaemic Control,91,9,False
+Phase III RCT (academic),Cardiovascular,79,21,False
+Phase III RCT (academic),Renal,68,32,False
+Phase III RCT (academic),Patient-Reported,52,48,False
+Phase III RCT (academic),EDI-Sensitive,18,82,True
+Phase III RCT (academic),Safety,87,13,False
+Phase II RCT,Glycaemic Control,88,12,False
+Phase II RCT,Cardiovascular,61,39,False
+Phase II RCT,Renal,44,56,False
+Phase II RCT,Patient-Reported,28,72,False
+Phase II RCT,EDI-Sensitive,9,91,True
+Phase II RCT,Safety,82,18,False
+Pragmatic trial,Glycaemic Control,84,16,False
+Pragmatic trial,Cardiovascular,71,29,False
+Pragmatic trial,Renal,58,42,False
+Pragmatic trial,Patient-Reported,67,33,False
+Pragmatic trial,EDI-Sensitive,31,69,True
+Pragmatic trial,Safety,79,21,False
+Registry-based trial,Glycaemic Control,76,24,False
+Registry-based trial,Cardiovascular,65,35,False
+Registry-based trial,Renal,71,29,False
+Registry-based trial,Patient-Reported,41,59,False
+Registry-based trial,EDI-Sensitive,22,78,True
+Registry-based trial,Safety,68,32,False
+Platform trial,Glycaemic Control,93,7,False
+Platform trial,Cardiovascular,85,15,False
+Platform trial,Renal,69,31,False
+Platform trial,Patient-Reported,58,42,False
+Platform trial,EDI-Sensitive,27,73,True
+Platform trial,Safety,90,10,False
+Real-world evidence study,Glycaemic Control,71,29,False
+Real-world evidence study,Cardiovascular,59,41,False
+Real-world evidence study,Renal,63,37,False
+Real-world evidence study,Patient-Reported,49,51,False
+Real-world evidence study,EDI-Sensitive,35,65,True
+Real-world evidence study,Safety,61,39,False

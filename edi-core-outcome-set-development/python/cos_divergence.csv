@@ -1,0 +1,29 @@
+outcome,category,range,std,max_score,min_score,score_Clinicians,score_Patients,score_Trialists,score_Regulators,score_Patient_Advocates
+Outcome by ethnicity reported,EDI-Sensitive,4.05,1.59,8.12,4.07,4.07,7.95,5.66,5.18,8.12
+Outcome by sex/gender,EDI-Sensitive,3.81,1.59,7.9,4.09,4.09,7.9,6.07,4.66,7.9
+Outcome by SES reported,EDI-Sensitive,3.77,1.52,8.16,4.39,4.89,8.16,6.15,4.39,7.85
+Adherence by EDI subgroup,EDI-Sensitive,3.43,1.48,7.91,4.48,4.7,7.91,5.9,4.48,7.85
+Outcome by age subgroup (>70),EDI-Sensitive,3.17,1.4,7.84,4.67,4.67,7.84,5.87,4.75,7.82
+Access to intervention equity,EDI-Sensitive,3.25,1.28,8.0,4.75,4.75,7.39,6.34,5.0,8.0
+Pain,Patient-Reported,2.24,1.05,8.67,6.43,6.68,8.67,6.43,6.49,8.65
+Health-related QoL (EQ-5D),Patient-Reported,2.66,1.03,8.43,5.77,6.26,8.02,5.77,6.59,8.43
+Diabetes distress,Patient-Reported,2.51,0.98,8.41,5.9,6.78,8.41,6.6,5.9,8.25
+Physical function,Patient-Reported,2.35,0.94,8.45,6.1,6.1,8.03,6.33,6.68,8.45
+Fatigue/energy,Patient-Reported,2.04,0.93,8.33,6.29,6.64,8.27,6.31,6.29,8.33
+Treatment satisfaction,Patient-Reported,2.06,0.73,8.12,6.06,6.06,8.12,6.82,6.41,7.42
+Heart failure hospitalisation,Cardiovascular,0.89,0.4,8.33,7.44,8.31,7.64,8.33,7.46,7.44
+Albuminuria/proteinuria,Renal,1.22,0.39,8.06,6.84,6.84,7.5,8.06,7.45,7.37
+LDL cholesterol,Cardiovascular,0.9,0.35,8.06,7.16,7.93,7.29,7.73,7.16,8.06
+Fasting plasma glucose,Glycaemic Control,0.96,0.35,8.35,7.39,8.08,8.33,8.35,8.07,7.39
+Renal composite endpoint,Renal,0.72,0.3,7.61,6.89,7.59,6.89,7.61,7.11,7.02
+Systolic blood pressure,Cardiovascular,0.83,0.28,8.46,7.63,7.63,7.82,8.46,7.92,7.94
+Serious adverse events,Safety,0.74,0.26,8.93,8.19,8.44,8.19,8.93,8.65,8.31
+HbA1c reduction,Glycaemic Control,0.67,0.26,8.72,8.05,8.06,8.72,8.18,8.5,8.05
+Hypoglycaemia episodes,Glycaemic Control,0.69,0.25,8.36,7.67,7.67,8.36,7.93,7.95,8.28
+Cardiovascular mortality,Cardiovascular,0.62,0.24,8.13,7.51,7.97,7.56,7.65,8.13,7.51
+Treatment discontinuation,Safety,0.62,0.22,8.55,7.93,7.93,8.15,8.55,8.32,8.0
+End-stage renal disease,Renal,0.61,0.2,7.39,6.78,7.09,7.12,6.78,7.39,7.16
+MACE (3-point),Cardiovascular,0.52,0.18,8.08,7.56,7.66,7.56,7.79,7.84,8.08
+Glucose variability,Glycaemic Control,0.34,0.12,8.18,7.84,7.88,8.18,7.84,8.04,7.99
+eGFR change,Renal,0.3,0.11,7.42,7.12,7.12,7.16,7.31,7.42,7.17
+Time in range (CGM),Glycaemic Control,0.26,0.09,8.31,8.05,8.05,8.31,8.11,8.24,8.18
