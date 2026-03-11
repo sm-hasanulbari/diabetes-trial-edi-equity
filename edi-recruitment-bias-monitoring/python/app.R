@@ -1,8 +1,8 @@
 # ==============================================================================
-#  EDI RECRUITMENT INTELLIGENCE PLATFORM  v6.0
+#  EDI RECRUITMENT INTELLIGENCE PLATFORM  v7.0
 #  Author : Sm Hasan ul Bari | MBBS · MSc Biostatistics · MSc Health Economics
 #  GitHub : github.com/sm-hasanulbari/diabetes-trial-edi-equity
-#  10 tabs — ZERO hardcoded values
+#  11 tabs — ZERO hardcoded values
 # ==============================================================================
 
 # 0. PACKAGES ------------------------------------------------------------------
@@ -35,7 +35,13 @@ dat <- list(
   tte_sum  = load_csv("tte_summary.csv"),
   tte_sg   = load_csv("tte_subgroup_results.csv"),
   tte_excl = load_csv("tte_edi_exclusion.csv"),
-  tte_acc  = load_csv("tte_edi_access.csv")
+  tte_acc        = load_csv("tte_edi_access.csv"),
+  stats_power    = load_csv("stats_power_curves.csv"),
+  stats_min_n    = load_csv("stats_min_n.csv"),
+  stats_subgrp   = load_csv("stats_subgroup.csv"),
+  stats_kpi      = load_csv("stats_kpi.csv"),
+  stats_bayes    = load_csv("stats_bayes.csv"),
+  stats_missing  = load_csv("stats_missing_data.csv")
 )
 
 # 3. HELPERS -------------------------------------------------------------------
@@ -140,7 +146,8 @@ ui <- dashboardPage(
       menuItem("DATA PIPELINE",     tabName = "pipeline", icon = icon("database")),
       menuItem("OUTCOME REPORT",    tabName = "outcomes", icon = icon("file-alt")),
       menuItem("REGULATORY EDI",    tabName = "regedi",   icon = icon("gavel")),
-      menuItem("TARGET TRIAL",      tabName = "tte",      icon = icon("random"))
+      menuItem("TARGET TRIAL",      tabName = "tte",      icon = icon("random")),
+      menuItem("STAT METHODS",       tabName = "stats",    icon = icon("calculator"))
     ),
     hr(style = "border-color:#2D3748;margin:5px 15px;"),
     div(style = "padding:10px 18px;",
@@ -497,12 +504,79 @@ ui <- dashboardPage(
                 )
               ))
         )
+      ),
+
+      # == TAB 11: STAT METHODS =================================================
+      tabItem(tabName = "stats",
+        fluidRow(column(12,
+          div(style = paste0("background:#EBF7F1;border-left:4px solid #1A7A4A;",
+                             "padding:10px 14px;border-radius:4px;margin-bottom:6px;"),
+            tags$span(style = paste0("background:#1A7A4A;color:white;padding:2px 8px;",
+                                    "border-radius:3px;font-size:10px;font-weight:bold;"),
+                      "PROJECT 9 — UTRECHT"),
+            HTML("&nbsp;"),
+            tags$b("Advanced Statistical Methods for Clinical Trial Design"),
+            tags$p(style = "margin:5px 0 0;font-size:12px;color:#4A5568;",
+              "Power simulation, subgroup multiplicity correction, Bayesian vs Frequentist ",
+              "sequential analysis, and missing data impact quantification.",
+              " Ref: Cohen (1988); Pocock et al. (2002) Lancet; Spiegelhalter et al. (2004).")
+          )
+        )),
+        fluidRow(
+          valueBoxOutput("stats1", 3), valueBoxOutput("stats2", 3),
+          valueBoxOutput("stats3", 3), valueBoxOutput("stats4", 3)
+        ),
+        fluidRow(
+          box(title = "POWER CURVES — TWO-SAMPLE t-TEST", width = 8,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Analytical power by sample size and effect size. Cohen (1988) d conventions."),
+              selectInput("stats_alpha", "Significance threshold:",
+                          choices = c("alpha=0.01" = 0.01, "alpha=0.05" = 0.05, "alpha=0.10" = 0.10),
+                          selected = 0.05, width = "180px"),
+              withSpinner(plotlyOutput("stats_power_plot", height = 360), color = "#C9A84C")),
+          box(title = "MINIMUM N (80% POWER)", width = 4,
+              status = "info", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Minimum sample per arm required for 80% power by effect size and alpha."),
+              withSpinner(DTOutput("stats_min_n_tbl"), color = "#C9A84C"))
+        ),
+        fluidRow(
+          box(title = "SUBGROUP FOREST PLOT — MULTIPLICITY CORRECTION", width = 12,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Toggle between correction methods. Stars = significant after correction. ",
+                "Ref: Benjamini & Hochberg (1995) JRSS-B."),
+              selectInput("stats_corr", "Correction method:",
+                          choices = c("Uncorrected (p<0.05)" = "raw",
+                                      "Bonferroni (alpha/k)"  = "bonf",
+                                      "Benjamini-Hochberg FDR 5%" = "bh"),
+                          selected = "raw", width = "220px"),
+              withSpinner(plotlyOutput("stats_subgrp_plot", height = 420), color = "#C9A84C"))
+        ),
+        fluidRow(
+          box(title = "BAYESIAN POSTERIOR UPDATING", width = 7,
+              status = "warning", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "How prior specification affects posterior mean and P(Benefit) as N accumulates.",
+                " Ref: Spiegelhalter et al. (2004)."),
+              selectInput("stats_bayes_metric", "Display:",
+                          choices = c("Posterior Mean" = "mu", "P(Benefit) %" = "prob"),
+                          selected = "prob", width = "160px"),
+              withSpinner(plotlyOutput("stats_bayes_plot", height = 340), color = "#C9A84C")),
+          box(title = "MISSING DATA BIAS — MCAR / MAR / MNAR", width = 5,
+              status = "danger", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Effect size attenuation by missingness mechanism.",
+                " Ref: Sterne et al. (2009) BMJ; Rubin (1976)."),
+              withSpinner(plotlyOutput("stats_missing_plot", height = 340), color = "#C9A84C"))
+        )
       )
 
     ), # end tabItems
 
     div(class = "footer",
-      "EDI Recruitment Intelligence Platform v6.0  |  Sm Hasan ul Bari MBBS MSc MSc  |  ",
+      "EDI Recruitment Intelligence Platform v7.0  |  Sm Hasan ul Bari MBBS MSc MSc  |  ",
       tags$a("github.com/sm-hasanulbari/diabetes-trial-edi-equity",
              href = "https://github.com/sm-hasanulbari/diabetes-trial-edi-equity",
              target = "_blank", style = paste0("color:", GOLD, ";text-decoration:none;")))
@@ -929,7 +1003,7 @@ server <- function(input, output, session) {
       Source=c("EDC","CTMS","IRT","Screening Logs","Demographics","Lab","PRO"),
       Refresh=c("Real-time","Daily","Real-time","Weekly","Annual","Weekly","Per-visit"),
       Variables=c("Sex, age, race","Country, diversity","Randomisation",
-                  "Failure by subgroup","SES, rurality","—","Language, disability"),
+                  "Failure by subgroup","SES, rurality","N/A","Language, disability"),
       Status=c("Active","Active","Active","Active","Reference","Pending","Planned"),
       GDPR=c("Art.89","Art.89","Legit. interest","Art.89","Public domain","Art.89","Consent"))
     datatable(df,rownames=FALSE,options=list(dom="t",scrollX=TRUE),class="compact stripe") %>%
@@ -1311,6 +1385,155 @@ server <- function(input, output, session) {
                           range = c(0, max(df$sglt2_rate, na.rm = TRUE) * 1.3)),
              yaxis = list(title = ""),
              paper_bgcolor = "white", plot_bgcolor = "white", showlegend = FALSE)
+  })
+
+
+  # ---------------------------------------------------------------------------
+  # STAT METHODS server (Tab 11 — Project 9 Utrecht)
+  # ---------------------------------------------------------------------------
+
+  # KPI value boxes
+  output$stats1 <- renderValueBox({
+    kpi <- dat$stats_kpi
+    val <- if (!is.null(kpi) && nrow(kpi) > 0) paste0(kpi$value[1], "%") else "N/A"
+    valueBox(val, "Power (d=0.3, α=0.05, N=200)", icon("bolt"), color = "blue")
+  })
+  output$stats2 <- renderValueBox({
+    kpi <- dat$stats_kpi
+    val <- if (!is.null(kpi) && nrow(kpi) > 1) as.character(kpi$value[2]) else "N/A"
+    valueBox(val, "Min N per arm (80% power)", icon("users"), color = "yellow")
+  })
+  output$stats3 <- renderValueBox({
+    kpi <- dat$stats_kpi
+    v4 <- if (!is.null(kpi) && nrow(kpi) > 3) kpi$value[4] else "N/A"
+    v5 <- if (!is.null(kpi) && nrow(kpi) > 4) kpi$value[5] else "N/A"
+    valueBox(paste0(v4, " / ", v5), "Sig Subgroups (Raw / Bonf)", icon("filter"), color = "green")
+  })
+  output$stats4 <- renderValueBox({
+    kpi <- dat$stats_kpi
+    val <- if (!is.null(kpi) && nrow(kpi) > 6) paste0(kpi$value[7], "%") else "N/A"
+    valueBox(val, "Type II Error β (α=0.05, d=0.3, N=200)", icon("exclamation"), color = "red")
+  })
+
+  # Power curves
+  output$stats_power_plot <- renderPlotly({
+    df <- dat$stats_power
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 15 first"))
+    a  <- as.numeric(input$stats_alpha)
+    sub <- df[abs(df$alpha - a) < 0.001, ]
+    cols <- c("0.2" = "#CCCCCC", "0.3" = "#1D6FA4", "0.5" = "#0A1628", "0.8" = "#1A7A4A")
+    p <- plot_ly()
+    for (d in c(0.2, 0.3, 0.5, 0.8)) {
+      s <- sub[abs(sub$effect_size - d) < 0.001, ]
+      p <- p %>% add_trace(data = s, x = ~n_per_arm, y = ~round(power * 100, 1),
+                            type = "scatter", mode = "lines",
+                            name = paste0("d = ", d),
+                            line = list(color = cols[as.character(d)], width = 2.5))
+    }
+    p %>%
+      add_segments(x = min(sub$n_per_arm), xend = max(sub$n_per_arm),
+                   y = 80, yend = 80,
+                   line = list(color = "#C0392B", dash = "dash", width = 1.5),
+                   name = "80% threshold") %>%
+      add_segments(x = min(sub$n_per_arm), xend = max(sub$n_per_arm),
+                   y = 90, yend = 90,
+                   line = list(color = "#D97706", dash = "dot", width = 1.5),
+                   name = "90% threshold") %>%
+      layout(xaxis = list(title = "N per arm"),
+             yaxis = list(title = "Power (%)", range = c(0, 105)),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             legend = list(orientation = "h", y = -0.2))
+  })
+
+  # Min N table
+  output$stats_min_n_tbl <- renderDT({
+    df <- dat$stats_min_n
+    if (is.null(df)) return(datatable(data.frame(Note = "Run Cell 15 first")))
+    sub <- df[abs(df$target_power - 0.80) < 0.001, c("effect_size", "alpha", "min_n_per_arm")]
+    names(sub) <- c("d", "alpha", "N_per_arm")
+    sub$d <- as.character(sub$d)
+    datatable(sub, rownames = FALSE,
+              options = list(pageLength = 12, dom = "t"),
+              class = "compact stripe")
+  })
+
+  # Subgroup forest plot
+  output$stats_subgrp_plot <- renderPlotly({
+    df <- dat$stats_subgrp
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 15 first"))
+    corr     <- input$stats_corr
+    sig_col  <- paste0("sig_", corr)
+    p_col    <- switch(corr, raw = "raw_p", bonf = "bonf_p", bh = "bh_fdr_p")
+    sig_col  <- switch(corr, raw = "sig_raw", bonf = "sig_bonf", bh = "sig_bh")
+    sig_color <- switch(corr, raw = "#C0392B", bonf = "#D97706", bh = "#1A7A4A")
+    yi <- rev(seq_len(nrow(df)))
+    p  <- plot_ly()
+    for (i in seq_len(nrow(df))) {
+      col <- if (isTRUE(df[[sig_col]][i])) sig_color else "#CCCCCC"
+      p <- p %>%
+        add_segments(x = df$rr_lo[i], xend = df$rr_hi[i],
+                     y = yi[i], yend = yi[i],
+                     line = list(color = col, width = 3), showlegend = FALSE) %>%
+        add_trace(x = df$rr[i], y = yi[i], type = "scatter", mode = "markers",
+                  marker = list(color = col, size = 10), showlegend = FALSE,
+                  text = paste0(df$subgroup[i], "<br>RR=", df$rr[i],
+                                "  p=", df[[p_col]][i]),
+                  hoverinfo = "text")
+    }
+    p %>%
+      add_segments(x = 1, xend = 1, y = 0.5, yend = nrow(df) + 0.5,
+                   line = list(color = "#CCCCCC", dash = "dash"), showlegend = FALSE) %>%
+      layout(xaxis = list(title = "Risk Ratio", range = c(0.4, 2.1)),
+             yaxis = list(tickvals = yi, ticktext = df$subgroup, title = ""),
+             paper_bgcolor = "white", plot_bgcolor = "white")
+  })
+
+  # Bayesian updating chart
+  output$stats_bayes_plot <- renderPlotly({
+    df <- dat$stats_bayes
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 15 first"))
+    metric   <- input$stats_bayes_metric
+    y_col    <- if (metric == "mu") "mu_post" else "prob_benefit"
+    y_label  <- if (metric == "mu") "Posterior mean (log RR)" else "P(Benefit) %"
+    cols     <- c(Sceptical = "#C0392B", Neutral = "#0A1628", Enthusiastic = "#1A7A4A")
+    p <- plot_ly()
+    for (pr in c("Sceptical", "Neutral", "Enthusiastic")) {
+      sub <- df[df$prior == pr, ]
+      yvals <- if (metric == "mu") round(sub$mu_post, 4) else round(sub$prob_benefit * 100, 2)
+      p <- p %>% add_trace(x = sub$n, y = yvals,
+                            type = "scatter", mode = "lines",
+                            name = pr, line = list(color = cols[pr], width = 2.5))
+    }
+    if (metric == "prob") {
+      p <- p %>%
+        add_segments(x = min(df$n), xend = max(df$n), y = 95, yend = 95,
+                     line = list(color = "#C0392B", dash = "dash"), name = "95% threshold") %>%
+        add_segments(x = min(df$n), xend = max(df$n), y = 80, yend = 80,
+                     line = list(color = "#D97706", dash = "dot"), name = "80% threshold")
+    }
+    p %>% layout(xaxis = list(title = "Cumulative N"),
+                 yaxis = list(title = y_label),
+                 paper_bgcolor = "white", plot_bgcolor = "white",
+                 legend = list(orientation = "h", y = -0.2))
+  })
+
+  # Missing data chart
+  output$stats_missing_plot <- renderPlotly({
+    df <- dat$stats_missing
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 15 first"))
+    plot_ly() %>%
+      add_trace(data = df, x = ~miss_pct, y = ~d_mcar, type = "scatter", mode = "lines",
+                name = "MCAR", line = list(color = "#1D6FA4", dash = "dash", width = 2)) %>%
+      add_trace(data = df, x = ~miss_pct, y = ~d_mar,  type = "scatter", mode = "lines",
+                name = "MAR",  line = list(color = "#D97706", dash = "dashdot", width = 2)) %>%
+      add_trace(data = df, x = ~miss_pct, y = ~d_mnar, type = "scatter", mode = "lines",
+                name = "MNAR", line = list(color = "#C0392B", dash = "dot", width = 2)) %>%
+      add_segments(x = 0, xend = max(df$miss_pct), y = df$true_d[1], yend = df$true_d[1],
+                   line = list(color = "#1A7A4A", width = 1.5), name = "True d") %>%
+      layout(xaxis = list(title = "% Data Missing"),
+             yaxis = list(title = "Cohen's d (estimated)"),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             legend = list(orientation = "h", y = -0.2))
   })
 
 } # end server
