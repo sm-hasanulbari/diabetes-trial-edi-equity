@@ -1,0 +1,6 @@
+df <- read.csv("diabetes_trials_edi_scored.csv", stringsAsFactors = FALSE)
+cat("Rows:", nrow(df), "\n")
+cat("edi_score class:", class(df[["edi_score"]]), "\n")
+cat("start_year class:", class(df[["start_year"]]), "\n")
+cat("\nAll columns:\n")
+cat(paste(names(df), collapse = "\n"), "\n")
