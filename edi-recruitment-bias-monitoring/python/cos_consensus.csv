@@ -22,7 +22,7 @@ outcome_id,outcome,category,mean_score_overall,pct_critical_overall,n_groups_con
 21,Outcome by ethnicity reported,EDI-Sensitive,6.45,0.34,1,False,False,False
 22,Outcome by SES reported,EDI-Sensitive,6.47,0.333,1,False,False,False
 23,Outcome by age subgroup (>70),EDI-Sensitive,6.48,0.31,1,False,False,False
-24,Outcome by sex/gender,EDI-Sensitive,6.4,0.352,2,False,False,False
+24,Outcome by sex/gender,EDI-Sensitive,6.4,0.352,2,False,False,True
 25,Access to intervention equity,EDI-Sensitive,6.4,0.341,1,False,False,False
 26,Adherence by EDI subgroup,EDI-Sensitive,6.39,0.305,0,False,False,False
 27,Serious adverse events,Safety,8.56,0.978,5,True,True,True

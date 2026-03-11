@@ -42,13 +42,15 @@ dat <- list(
   stats_kpi      = load_csv("stats_kpi.csv"),
   stats_bayes    = load_csv("stats_bayes.csv"),
   stats_missing  = load_csv("stats_missing_data.csv"),
-  cos_outcomes   = load_csv("cos_outcomes.csv"),
-  cos_delphi     = load_csv("cos_delphi.csv"),
-  cos_consensus  = load_csv("cos_consensus.csv"),
-  cos_audit      = load_csv("cos_audit.csv"),
-  cos_divergence = load_csv("cos_divergence.csv"),
-  cos_threshold  = load_csv("cos_threshold.csv"),
-  cos_kpi        = load_csv("cos_kpi.csv")
+  cos_outcomes        = load_csv("cos_outcomes.csv"),
+  cos_delphi          = load_csv("cos_delphi.csv"),
+  cos_consensus       = load_csv("cos_consensus.csv"),
+  cos_audit           = load_csv("cos_audit.csv"),
+  cos_divergence      = load_csv("cos_divergence.csv"),
+  cos_threshold       = load_csv("cos_threshold.csv"),
+  cos_regional        = load_csv("cos_regional.csv"),
+  cos_regional_delphi = load_csv("cos_regional_delphi.csv"),
+  cos_kpi             = load_csv("cos_kpi.csv")
 )
 
 # 3. HELPERS -------------------------------------------------------------------
@@ -614,14 +616,32 @@ ui <- dashboardPage(
               withSpinner(plotlyOutput("cos_gap_plot", height = 380), color = "#C9A84C"))
         ),
         fluidRow(
-          box(title = "DELPHI CONSENSUS — STAKEHOLDER SCORES BY ROUND", width = 6,
+          box(title = "REGIONAL BREAKDOWN — GLOBAL vs EUROPEAN REPORTING", width = 12,
+              status = "success", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Outcome reporting rates: European trials vs Global (ex-Europe). ",
+                "European trials show greater EDI reporting deficit. Ref: EMA post-authorisation guidance."),
+              selectInput("cos_region_cat", "Filter by category:",
+                          choices = c("All", "EDI-Sensitive", "Patient-Reported",
+                                      "Glycaemic Control", "Cardiovascular", "Renal", "Safety"),
+                          selected = "EDI-Sensitive", width = "200px"),
+              withSpinner(plotlyOutput("cos_regional_plot", height = 360), color = "#C9A84C"))
+        ),
+        fluidRow(
+          box(title = "DELPHI CONSENSUS — STAKEHOLDER SCORES BY REGION & ROUND", width = 6,
               status = "warning", solidHeader = TRUE,
               tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
                 "Mean importance score (1-9) across 3 Delphi rounds. Score >= 7 = critical."),
-              selectInput("cos_cat", "Outcome category:",
-                          choices = c("All", "EDI-Sensitive", "Patient-Reported",
-                                      "Glycaemic Control", "Cardiovascular", "Renal", "Safety"),
-                          selected = "All", width = "200px"),
+              fluidRow(
+                column(6, selectInput("cos_cat", "Outcome category:",
+                            choices = c("All", "EDI-Sensitive", "Patient-Reported",
+                                        "Glycaemic Control", "Cardiovascular", "Renal", "Safety"),
+                            selected = "All", width = "100%")),
+                column(6, selectInput("cos_delphi_region", "Region:",
+                            choices = c("Global", "Europe", "North America",
+                                        "Asia-Pacific", "Other"),
+                            selected = "Global", width = "100%"))
+              ),
               withSpinner(plotlyOutput("cos_delphi_plot", height = 340), color = "#C9A84C")),
           box(title = "CLINICIANS vs PATIENTS — EDI OUTCOME PRIORITY GAP", width = 6,
               status = "info", solidHeader = TRUE,
@@ -1640,6 +1660,37 @@ server <- function(input, output, session) {
              icon = icon("exclamation-triangle"), color = "red")
   })
 
+  # Regional breakdown chart
+  output$cos_regional_plot <- renderPlotly({
+    df <- dat$cos_regional
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    cat_filter <- input$cos_region_cat
+    df <- df[df$region %in% c("Global", "Europe"), ]
+    if (cat_filter != "All") df <- df[df$category == cat_filter, ]
+    cols <- c("Europe" = "#C0392B", "Global" = "#003366")
+    p <- plot_ly()
+    for (reg in c("Global", "Europe")) {
+      sub <- df[df$region == reg, ]
+      sub <- sub[order(sub$pct), ]
+      p <- p %>% add_trace(
+        x = ~pct, y = ~outcome, data = sub,
+        type = "bar", orientation = "h", name = reg,
+        marker = list(color = cols[reg]),
+        text = ~paste0(pct, "%"), textposition = "outside",
+        hovertext = ~paste0(outcome, "<br>", reg, ": ", pct, "%"),
+        hoverinfo = "text")
+    }
+    p %>% layout(
+      barmode = "group",
+      xaxis = list(title = "% of trials reporting", range = c(0, 115)),
+      yaxis = list(title = "", tickfont = list(size = 10)),
+      paper_bgcolor = "white", plot_bgcolor = "white",
+      legend = list(orientation = "h", y = -0.15),
+      shapes = list(list(type = "line", x0 = 50, x1 = 50,
+                         y0 = -0.5, y1 = length(unique(df$outcome)) - 0.5,
+                         line = list(color = "#CCCCCC", dash = "dash"))))
+  })
+
   # Reporting rate bar chart
   output$cos_reporting_plot <- renderPlotly({
     df <- dat$cos_outcomes
@@ -1688,33 +1739,43 @@ server <- function(input, output, session) {
              showlegend = FALSE)
   })
 
-  # Delphi scores by round
+  # Delphi scores by round + region
   output$cos_delphi_plot <- renderPlotly({
-    df <- dat$cos_delphi
-    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    df_reg <- dat$cos_regional_delphi
+    df_glob <- dat$cos_delphi
+    if (is.null(df_reg) || is.null(df_glob))
+      return(plot_ly() %>% layout(title = "Run Cell 16 first"))
+    region_sel <- input$cos_delphi_region
     cat_filter <- input$cos_cat
+    # Use regional delphi data
+    df <- df_reg[df_reg$region == region_sel, ]
     if (cat_filter != "All") df <- df[df$category == cat_filter, ]
-    agg <- aggregate(mean_score ~ stakeholder + round, data = df, FUN = mean)
-    agg$round <- paste0("Round ", agg$round)
-    cols <- c("Round 1" = "#CCCCCC", "Round 2" = "#0066CC", "Round 3" = "#003366")
-    p <- plot_ly()
-    for (rnd in c("Round 1", "Round 2", "Round 3")) {
-      sub <- agg[agg$round == rnd, ]
-      p <- p %>% add_trace(x = ~stakeholder, y = ~mean_score, data = sub,
-                           type = "bar", name = rnd,
-                           marker = list(color = cols[rnd]),
-                           hovertext = ~paste0(stakeholder, " | ", rnd,
-                                               "<br>Mean score: ", round(mean_score, 2)),
-                           hoverinfo = "text")
-    }
-    p %>% layout(barmode = "group",
-                 xaxis = list(title = ""),
-                 yaxis = list(title = "Mean score (1-9)", range = c(0, 10)),
-                 paper_bgcolor = "white", plot_bgcolor = "white",
-                 shapes = list(list(type = "line", x0 = -0.5, x1 = 4.5,
-                                    y0 = 7, y1 = 7,
-                                    line = list(color = "#C0392B", dash = "dash"))),
-                 legend = list(orientation = "h", y = -0.2))
+    agg <- aggregate(mean_score ~ stakeholder, data = df, FUN = mean)
+    # Also get global for comparison
+    df_g <- df_glob
+    if (cat_filter != "All") df_g <- df_g[df_g$category == cat_filter, ]
+    agg_g <- aggregate(mean_score ~ stakeholder,
+                       data = df_g[df_g$round == 3, ], FUN = mean)
+    plot_ly() %>%
+      add_trace(data = agg_g, x = ~stakeholder, y = ~mean_score,
+                type = "bar", name = "Global (Round 3)",
+                marker = list(color = "#CCCCCC"),
+                hovertext = ~paste0(stakeholder, " | Global<br>Score: ", round(mean_score, 2)),
+                hoverinfo = "text") %>%
+      add_trace(data = agg, x = ~stakeholder, y = ~mean_score,
+                type = "bar", name = paste0(region_sel),
+                marker = list(color = "#003366"),
+                hovertext = ~paste0(stakeholder, " | ", region_sel,
+                                    "<br>Score: ", round(mean_score, 2)),
+                hoverinfo = "text") %>%
+      layout(barmode = "group",
+             xaxis = list(title = ""),
+             yaxis = list(title = "Mean score (1-9)", range = c(0, 10)),
+             paper_bgcolor = "white", plot_bgcolor = "white",
+             shapes = list(list(type = "line", x0 = -0.5, x1 = 4.5,
+                                y0 = 7, y1 = 7,
+                                line = list(color = "#C0392B", dash = "dash"))),
+             legend = list(orientation = "h", y = -0.2))
   })
 
   # Clinician vs Patient dumbbell

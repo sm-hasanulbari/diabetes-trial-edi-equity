@@ -1,0 +1,141 @@
+region,outcome,category,reporting_rate,pct,delphi_score
+Global,HbA1c reduction,Glycaemic Control,0.94,94.0,8.284
+Global,Fasting plasma glucose,Glycaemic Control,0.82,82.0,8.284
+Global,Time in range (CGM),Glycaemic Control,0.41,41.0,8.284
+Global,Hypoglycaemia episodes,Glycaemic Control,0.67,67.0,8.284
+Global,Glucose variability,Glycaemic Control,0.38,38.0,8.284
+Global,MACE (3-point),Cardiovascular,0.78,78.0,8.016
+Global,Systolic blood pressure,Cardiovascular,0.71,71.0,8.016
+Global,LDL cholesterol,Cardiovascular,0.69,69.0,8.016
+Global,Heart failure hospitalisation,Cardiovascular,0.52,52.0,8.016
+Global,Cardiovascular mortality,Cardiovascular,0.48,48.0,8.016
+Global,eGFR change,Renal,0.61,61.0,7.4719999999999995
+Global,Albuminuria/proteinuria,Renal,0.58,58.0,7.4719999999999995
+Global,End-stage renal disease,Renal,0.34,34.0,7.4719999999999995
+Global,Renal composite endpoint,Renal,0.29,29.0,7.4719999999999995
+Global,Health-related QoL (EQ-5D),Patient-Reported,0.31,31.0,7.07
+Global,Diabetes distress,Patient-Reported,0.18,18.0,7.07
+Global,Treatment satisfaction,Patient-Reported,0.22,22.0,7.07
+Global,Physical function,Patient-Reported,0.27,27.0,7.07
+Global,Fatigue/energy,Patient-Reported,0.15,15.0,7.07
+Global,Pain,Patient-Reported,0.12,12.0,7.07
+Global,Outcome by ethnicity reported,EDI-Sensitive,0.08,8.0,6.366
+Global,Outcome by SES reported,EDI-Sensitive,0.06,6.0,6.366
+Global,Outcome by age subgroup (>70),EDI-Sensitive,0.04,4.0,6.366
+Global,Outcome by sex/gender,EDI-Sensitive,0.11,11.0,6.366
+Global,Access to intervention equity,EDI-Sensitive,0.05,5.0,6.366
+Global,Adherence by EDI subgroup,EDI-Sensitive,0.03,3.0,6.366
+Global,Serious adverse events,Safety,0.89,89.0,8.623999999999999
+Global,Treatment discontinuation,Safety,0.76,76.0,8.623999999999999
+Europe,HbA1c reduction,Glycaemic Control,0.96,96.0,8.306000000000001
+Europe,Fasting plasma glucose,Glycaemic Control,0.85,85.0,8.306000000000001
+Europe,Time in range (CGM),Glycaemic Control,0.44,44.0,8.306000000000001
+Europe,Hypoglycaemia episodes,Glycaemic Control,0.7,70.0,8.306000000000001
+Europe,Glucose variability,Glycaemic Control,0.41,41.0,8.306000000000001
+Europe,MACE (3-point),Cardiovascular,0.82,82.0,7.978
+Europe,Systolic blood pressure,Cardiovascular,0.76,76.0,7.978
+Europe,LDL cholesterol,Cardiovascular,0.73,73.0,7.978
+Europe,Heart failure hospitalisation,Cardiovascular,0.58,58.0,7.978
+Europe,Cardiovascular mortality,Cardiovascular,0.54,54.0,7.978
+Europe,eGFR change,Renal,0.65,65.0,7.359999999999999
+Europe,Albuminuria/proteinuria,Renal,0.61,61.0,7.359999999999999
+Europe,End-stage renal disease,Renal,0.37,37.0,7.359999999999999
+Europe,Renal composite endpoint,Renal,0.32,32.0,7.359999999999999
+Europe,Health-related QoL (EQ-5D),Patient-Reported,0.38,38.0,7.218000000000001
+Europe,Diabetes distress,Patient-Reported,0.24,24.0,7.218000000000001
+Europe,Treatment satisfaction,Patient-Reported,0.29,29.0,7.218000000000001
+Europe,Physical function,Patient-Reported,0.33,33.0,7.218000000000001
+Europe,Fatigue/energy,Patient-Reported,0.19,19.0,7.218000000000001
+Europe,Pain,Patient-Reported,0.16,16.0,7.218000000000001
+Europe,Outcome by ethnicity reported,EDI-Sensitive,0.05,5.0,6.006
+Europe,Outcome by SES reported,EDI-Sensitive,0.04,4.0,6.006
+Europe,Outcome by age subgroup (>70),EDI-Sensitive,0.03,3.0,6.006
+Europe,Outcome by sex/gender,EDI-Sensitive,0.07,7.0,6.006
+Europe,Access to intervention equity,EDI-Sensitive,0.03,3.0,6.006
+Europe,Adherence by EDI subgroup,EDI-Sensitive,0.02,2.0,6.006
+Europe,Serious adverse events,Safety,0.91,91.0,8.45
+Europe,Treatment discontinuation,Safety,0.79,79.0,8.45
+North America,HbA1c reduction,Glycaemic Control,0.93,93.0,8.36
+North America,Fasting plasma glucose,Glycaemic Control,0.81,81.0,8.36
+North America,Time in range (CGM),Glycaemic Control,0.39,39.0,8.36
+North America,Hypoglycaemia episodes,Glycaemic Control,0.65,65.0,8.36
+North America,Glucose variability,Glycaemic Control,0.36,36.0,8.36
+North America,MACE (3-point),Cardiovascular,0.76,76.0,8.05
+North America,Systolic blood pressure,Cardiovascular,0.69,69.0,8.05
+North America,LDL cholesterol,Cardiovascular,0.67,67.0,8.05
+North America,Heart failure hospitalisation,Cardiovascular,0.51,51.0,8.05
+North America,Cardiovascular mortality,Cardiovascular,0.46,46.0,8.05
+North America,eGFR change,Renal,0.59,59.0,7.444
+North America,Albuminuria/proteinuria,Renal,0.56,56.0,7.444
+North America,End-stage renal disease,Renal,0.33,33.0,7.444
+North America,Renal composite endpoint,Renal,0.28,28.0,7.444
+North America,Health-related QoL (EQ-5D),Patient-Reported,0.28,28.0,7.142
+North America,Diabetes distress,Patient-Reported,0.16,16.0,7.142
+North America,Treatment satisfaction,Patient-Reported,0.2,20.0,7.142
+North America,Physical function,Patient-Reported,0.25,25.0,7.142
+North America,Fatigue/energy,Patient-Reported,0.14,14.0,7.142
+North America,Pain,Patient-Reported,0.11,11.0,7.142
+North America,Outcome by ethnicity reported,EDI-Sensitive,0.11,11.0,6.68
+North America,Outcome by SES reported,EDI-Sensitive,0.09,9.0,6.68
+North America,Outcome by age subgroup (>70),EDI-Sensitive,0.06,6.0,6.68
+North America,Outcome by sex/gender,EDI-Sensitive,0.14,14.0,6.68
+North America,Access to intervention equity,EDI-Sensitive,0.07,7.0,6.68
+North America,Adherence by EDI subgroup,EDI-Sensitive,0.04,4.0,6.68
+North America,Serious adverse events,Safety,0.88,88.0,8.508
+North America,Treatment discontinuation,Safety,0.74,74.0,8.508
+Asia-Pacific,HbA1c reduction,Glycaemic Control,0.91,91.0,8.308
+Asia-Pacific,Fasting plasma glucose,Glycaemic Control,0.79,79.0,8.308
+Asia-Pacific,Time in range (CGM),Glycaemic Control,0.38,38.0,8.308
+Asia-Pacific,Hypoglycaemia episodes,Glycaemic Control,0.63,63.0,8.308
+Asia-Pacific,Glucose variability,Glycaemic Control,0.35,35.0,8.308
+Asia-Pacific,MACE (3-point),Cardiovascular,0.74,74.0,7.9959999999999996
+Asia-Pacific,Systolic blood pressure,Cardiovascular,0.67,67.0,7.9959999999999996
+Asia-Pacific,LDL cholesterol,Cardiovascular,0.64,64.0,7.9959999999999996
+Asia-Pacific,Heart failure hospitalisation,Cardiovascular,0.48,48.0,7.9959999999999996
+Asia-Pacific,Cardiovascular mortality,Cardiovascular,0.43,43.0,7.9959999999999996
+Asia-Pacific,eGFR change,Renal,0.57,57.0,7.4239999999999995
+Asia-Pacific,Albuminuria/proteinuria,Renal,0.53,53.0,7.4239999999999995
+Asia-Pacific,End-stage renal disease,Renal,0.31,31.0,7.4239999999999995
+Asia-Pacific,Renal composite endpoint,Renal,0.26,26.0,7.4239999999999995
+Asia-Pacific,Health-related QoL (EQ-5D),Patient-Reported,0.24,24.0,7.2219999999999995
+Asia-Pacific,Diabetes distress,Patient-Reported,0.13,13.0,7.2219999999999995
+Asia-Pacific,Treatment satisfaction,Patient-Reported,0.17,17.0,7.2219999999999995
+Asia-Pacific,Physical function,Patient-Reported,0.22,22.0,7.2219999999999995
+Asia-Pacific,Fatigue/energy,Patient-Reported,0.12,12.0,7.2219999999999995
+Asia-Pacific,Pain,Patient-Reported,0.09,9.0,7.2219999999999995
+Asia-Pacific,Outcome by ethnicity reported,EDI-Sensitive,0.07,7.0,6.33
+Asia-Pacific,Outcome by SES reported,EDI-Sensitive,0.05,5.0,6.33
+Asia-Pacific,Outcome by age subgroup (>70),EDI-Sensitive,0.03,3.0,6.33
+Asia-Pacific,Outcome by sex/gender,EDI-Sensitive,0.09,9.0,6.33
+Asia-Pacific,Access to intervention equity,EDI-Sensitive,0.04,4.0,6.33
+Asia-Pacific,Adherence by EDI subgroup,EDI-Sensitive,0.02,2.0,6.33
+Asia-Pacific,Serious adverse events,Safety,0.86,86.0,8.498000000000001
+Asia-Pacific,Treatment discontinuation,Safety,0.71,71.0,8.498000000000001
+Other,HbA1c reduction,Glycaemic Control,0.88,88.0,8.486
+Other,Fasting plasma glucose,Glycaemic Control,0.76,76.0,8.486
+Other,Time in range (CGM),Glycaemic Control,0.35,35.0,8.486
+Other,Hypoglycaemia episodes,Glycaemic Control,0.6,60.0,8.486
+Other,Glucose variability,Glycaemic Control,0.33,33.0,8.486
+Other,MACE (3-point),Cardiovascular,0.71,71.0,8.056000000000001
+Other,Systolic blood pressure,Cardiovascular,0.63,63.0,8.056000000000001
+Other,LDL cholesterol,Cardiovascular,0.61,61.0,8.056000000000001
+Other,Heart failure hospitalisation,Cardiovascular,0.45,45.0,8.056000000000001
+Other,Cardiovascular mortality,Cardiovascular,0.4,40.0,8.056000000000001
+Other,eGFR change,Renal,0.54,54.0,7.38
+Other,Albuminuria/proteinuria,Renal,0.5,50.0,7.38
+Other,End-stage renal disease,Renal,0.29,29.0,7.38
+Other,Renal composite endpoint,Renal,0.24,24.0,7.38
+Other,Health-related QoL (EQ-5D),Patient-Reported,0.21,21.0,7.226000000000001
+Other,Diabetes distress,Patient-Reported,0.11,11.0,7.226000000000001
+Other,Treatment satisfaction,Patient-Reported,0.15,15.0,7.226000000000001
+Other,Physical function,Patient-Reported,0.19,19.0,7.226000000000001
+Other,Fatigue/energy,Patient-Reported,0.1,10.0,7.226000000000001
+Other,Pain,Patient-Reported,0.08,8.0,7.226000000000001
+Other,Outcome by ethnicity reported,EDI-Sensitive,0.06,6.0,6.4799999999999995
+Other,Outcome by SES reported,EDI-Sensitive,0.04,4.0,6.4799999999999995
+Other,Outcome by age subgroup (>70),EDI-Sensitive,0.02,2.0,6.4799999999999995
+Other,Outcome by sex/gender,EDI-Sensitive,0.08,8.0,6.4799999999999995
+Other,Access to intervention equity,EDI-Sensitive,0.03,3.0,6.4799999999999995
+Other,Adherence by EDI subgroup,EDI-Sensitive,0.02,2.0,6.4799999999999995
+Other,Serious adverse events,Safety,0.83,83.0,8.64
+Other,Treatment discontinuation,Safety,0.68,68.0,8.64

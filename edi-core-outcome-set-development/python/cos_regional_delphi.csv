@@ -1,0 +1,151 @@
+region,stakeholder,category,mean_score
+Global,Clinicians,Glycaemic Control,8.37
+Global,Clinicians,Cardiovascular,7.96
+Global,Clinicians,Renal,7.5
+Global,Clinicians,Patient-Reported,6.52
+Global,Clinicians,EDI-Sensitive,5.43
+Global,Clinicians,Safety,8.39
+Global,Patients,Glycaemic Control,8.24
+Global,Patients,Cardiovascular,8.21
+Global,Patients,Renal,7.58
+Global,Patients,Patient-Reported,7.76
+Global,Patients,EDI-Sensitive,7.03
+Global,Patients,Safety,8.66
+Global,Trialists,Glycaemic Control,8.23
+Global,Trialists,Cardiovascular,7.84
+Global,Trialists,Renal,7.52
+Global,Trialists,Patient-Reported,6.38
+Global,Trialists,EDI-Sensitive,6.35
+Global,Trialists,Safety,8.62
+Global,Regulators,Glycaemic Control,8.41
+Global,Regulators,Cardiovascular,8.08
+Global,Regulators,Renal,7.26
+Global,Regulators,Patient-Reported,6.71
+Global,Regulators,EDI-Sensitive,5.5
+Global,Regulators,Safety,9.0
+Global,Patient Advocates,Glycaemic Control,8.17
+Global,Patient Advocates,Cardiovascular,7.99
+Global,Patient Advocates,Renal,7.5
+Global,Patient Advocates,Patient-Reported,7.98
+Global,Patient Advocates,EDI-Sensitive,7.52
+Global,Patient Advocates,Safety,8.45
+Europe,Clinicians,Glycaemic Control,8.3
+Europe,Clinicians,Cardiovascular,7.86
+Europe,Clinicians,Renal,7.52
+Europe,Clinicians,Patient-Reported,6.84
+Europe,Clinicians,EDI-Sensitive,5.07
+Europe,Clinicians,Safety,8.5
+Europe,Patients,Glycaemic Control,8.29
+Europe,Patients,Cardiovascular,7.92
+Europe,Patients,Renal,7.07
+Europe,Patients,Patient-Reported,7.71
+Europe,Patients,EDI-Sensitive,6.75
+Europe,Patients,Safety,8.51
+Europe,Trialists,Glycaemic Control,8.43
+Europe,Trialists,Cardiovascular,8.2
+Europe,Trialists,Renal,7.49
+Europe,Trialists,Patient-Reported,6.66
+Europe,Trialists,EDI-Sensitive,5.79
+Europe,Trialists,Safety,8.32
+Europe,Regulators,Glycaemic Control,8.31
+Europe,Regulators,Cardiovascular,7.92
+Europe,Regulators,Renal,7.13
+Europe,Regulators,Patient-Reported,6.79
+Europe,Regulators,EDI-Sensitive,5.24
+Europe,Regulators,Safety,8.37
+Europe,Patient Advocates,Glycaemic Control,8.2
+Europe,Patient Advocates,Cardiovascular,7.99
+Europe,Patient Advocates,Renal,7.59
+Europe,Patient Advocates,Patient-Reported,8.09
+Europe,Patient Advocates,EDI-Sensitive,7.18
+Europe,Patient Advocates,Safety,8.55
+North America,Clinicians,Glycaemic Control,8.53
+North America,Clinicians,Cardiovascular,7.84
+North America,Clinicians,Renal,7.47
+North America,Clinicians,Patient-Reported,6.74
+North America,Clinicians,EDI-Sensitive,5.52
+North America,Clinicians,Safety,8.58
+North America,Patients,Glycaemic Control,8.21
+North America,Patients,Cardiovascular,7.99
+North America,Patients,Renal,7.33
+North America,Patients,Patient-Reported,7.89
+North America,Patients,EDI-Sensitive,7.67
+North America,Patients,Safety,8.35
+North America,Trialists,Glycaemic Control,8.35
+North America,Trialists,Cardiovascular,7.96
+North America,Trialists,Renal,7.62
+North America,Trialists,Patient-Reported,6.71
+North America,Trialists,EDI-Sensitive,6.64
+North America,Trialists,Safety,8.5
+North America,Regulators,Glycaemic Control,8.48
+North America,Regulators,Cardiovascular,8.16
+North America,Regulators,Renal,7.36
+North America,Regulators,Patient-Reported,6.52
+North America,Regulators,EDI-Sensitive,5.9
+North America,Regulators,Safety,8.84
+North America,Patient Advocates,Glycaemic Control,8.23
+North America,Patient Advocates,Cardiovascular,8.3
+North America,Patient Advocates,Renal,7.44
+North America,Patient Advocates,Patient-Reported,7.85
+North America,Patient Advocates,EDI-Sensitive,7.67
+North America,Patient Advocates,Safety,8.27
+Asia-Pacific,Clinicians,Glycaemic Control,8.58
+Asia-Pacific,Clinicians,Cardiovascular,7.94
+Asia-Pacific,Clinicians,Renal,7.75
+Asia-Pacific,Clinicians,Patient-Reported,6.62
+Asia-Pacific,Clinicians,EDI-Sensitive,5.39
+Asia-Pacific,Clinicians,Safety,8.49
+Asia-Pacific,Patients,Glycaemic Control,8.04
+Asia-Pacific,Patients,Cardiovascular,7.97
+Asia-Pacific,Patients,Renal,7.38
+Asia-Pacific,Patients,Patient-Reported,7.85
+Asia-Pacific,Patients,EDI-Sensitive,7.28
+Asia-Pacific,Patients,Safety,8.62
+Asia-Pacific,Trialists,Glycaemic Control,8.33
+Asia-Pacific,Trialists,Cardiovascular,7.76
+Asia-Pacific,Trialists,Renal,7.56
+Asia-Pacific,Trialists,Patient-Reported,6.82
+Asia-Pacific,Trialists,EDI-Sensitive,6.09
+Asia-Pacific,Trialists,Safety,8.46
+Asia-Pacific,Regulators,Glycaemic Control,8.26
+Asia-Pacific,Regulators,Cardiovascular,8.11
+Asia-Pacific,Regulators,Renal,7.19
+Asia-Pacific,Regulators,Patient-Reported,6.9
+Asia-Pacific,Regulators,EDI-Sensitive,5.54
+Asia-Pacific,Regulators,Safety,8.45
+Asia-Pacific,Patient Advocates,Glycaemic Control,8.33
+Asia-Pacific,Patient Advocates,Cardiovascular,8.2
+Asia-Pacific,Patient Advocates,Renal,7.24
+Asia-Pacific,Patient Advocates,Patient-Reported,7.92
+Asia-Pacific,Patient Advocates,EDI-Sensitive,7.35
+Asia-Pacific,Patient Advocates,Safety,8.47
+Other,Clinicians,Glycaemic Control,8.25
+Other,Clinicians,Cardiovascular,8.17
+Other,Clinicians,Renal,7.46
+Other,Clinicians,Patient-Reported,6.97
+Other,Clinicians,EDI-Sensitive,5.27
+Other,Clinicians,Safety,8.7
+Other,Patients,Glycaemic Control,8.54
+Other,Patients,Cardiovascular,7.84
+Other,Patients,Renal,7.47
+Other,Patients,Patient-Reported,7.67
+Other,Patients,EDI-Sensitive,7.62
+Other,Patients,Safety,8.76
+Other,Trialists,Glycaemic Control,8.63
+Other,Trialists,Cardiovascular,8.21
+Other,Trialists,Renal,7.36
+Other,Trialists,Patient-Reported,6.76
+Other,Trialists,EDI-Sensitive,6.64
+Other,Trialists,Safety,8.67
+Other,Regulators,Glycaemic Control,8.67
+Other,Regulators,Cardiovascular,8.22
+Other,Regulators,Renal,7.1
+Other,Regulators,Patient-Reported,6.74
+Other,Regulators,EDI-Sensitive,5.78
+Other,Regulators,Safety,8.5
+Other,Patient Advocates,Glycaemic Control,8.34
+Other,Patient Advocates,Cardiovascular,7.84
+Other,Patient Advocates,Renal,7.51
+Other,Patient Advocates,Patient-Reported,7.99
+Other,Patient Advocates,EDI-Sensitive,7.09
+Other,Patient Advocates,Safety,8.57
