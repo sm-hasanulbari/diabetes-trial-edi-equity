@@ -1,8 +1,8 @@
 # ==============================================================================
-#  EDI RECRUITMENT INTELLIGENCE PLATFORM  v5.0
+#  EDI RECRUITMENT INTELLIGENCE PLATFORM  v6.0
 #  Author : Sm Hasan ul Bari | MBBS · MSc Biostatistics · MSc Health Economics
 #  GitHub : github.com/sm-hasanulbari/diabetes-trial-edi-equity
-#  ZERO hardcoded values — everything computed live from CSVs
+#  10 tabs — ZERO hardcoded values
 # ==============================================================================
 
 # 0. PACKAGES ------------------------------------------------------------------
@@ -30,15 +30,18 @@ load_csv <- function(fname) {
 }
 
 dat <- list(
-  scored = load_csv("diabetes_trials_edi_scored.csv"),
-  reg    = load_csv("regulatory_edi_scored.csv")
+  scored   = load_csv("diabetes_trials_edi_scored.csv"),
+  reg      = load_csv("regulatory_edi_scored.csv"),
+  tte_sum  = load_csv("tte_summary.csv"),
+  tte_sg   = load_csv("tte_subgroup_results.csv"),
+  tte_excl = load_csv("tte_edi_exclusion.csv"),
+  tte_acc  = load_csv("tte_edi_access.csv")
 )
 
 # 3. HELPERS -------------------------------------------------------------------
 pct  <- function(x) paste0(round(x * 100, 1), "%")
 fmt1 <- function(x) sprintf("%.1f", x)
 
-# Simulated enrollment for drift demo (synthetic only)
 sim_enroll <- function(grp = "Female", seed = 42) {
   set.seed(seed)
   mu0 <- if (grp == "Female") 0.462 else 0.321
@@ -136,7 +139,8 @@ ui <- dashboardPage(
       menuItem("ALGORITHM BENCH",   tabName = "algos",    icon = icon("cogs")),
       menuItem("DATA PIPELINE",     tabName = "pipeline", icon = icon("database")),
       menuItem("OUTCOME REPORT",    tabName = "outcomes", icon = icon("file-alt")),
-      menuItem("REGULATORY EDI",    tabName = "regedi",   icon = icon("gavel"))
+      menuItem("REGULATORY EDI",    tabName = "regedi",   icon = icon("gavel")),
+      menuItem("TARGET TRIAL",      tabName = "tte",      icon = icon("random"))
     ),
     hr(style = "border-color:#2D3748;margin:5px 15px;"),
     div(style = "padding:10px 18px;",
@@ -152,7 +156,7 @@ ui <- dashboardPage(
   dashboardBody(
     tabItems(
 
-      # TAB 1: OVERVIEW --------------------------------------------------------
+      # ── TAB 1: OVERVIEW ────────────────────────────────────────────────────
       tabItem(tabName = "overview",
         fluidRow(column(12,
           div(class = "hdr",
@@ -187,7 +191,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 2: GLOBAL EDI ------------------------------------------------------
+      # ── TAB 2: GLOBAL EDI ──────────────────────────────────────────────────
       tabItem(tabName = "global",
         fluidRow(column(12,
           div(class = "alert-info2",
@@ -218,7 +222,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 3: EUROPEAN ANALYSIS -----------------------------------------------
+      # ── TAB 3: EUROPEAN ANALYSIS ───────────────────────────────────────────
       tabItem(tabName = "europe",
         fluidRow(column(12,
           div(class = "alert-info2",
@@ -241,7 +245,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 4: DRIFT -----------------------------------------------------------
+      # ── TAB 4: DRIFT ───────────────────────────────────────────────────────
       tabItem(tabName = "drift",
         fluidRow(column(12,
           div(class = "alert-warn",
@@ -279,7 +283,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 5: FAIRNESS --------------------------------------------------------
+      # ── TAB 5: FAIRNESS ────────────────────────────────────────────────────
       tabItem(tabName = "fairness",
         fluidRow(column(12,
           div(class = "alert-ok",
@@ -312,7 +316,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 6: ALGOS -----------------------------------------------------------
+      # ── TAB 6: ALGOS ───────────────────────────────────────────────────────
       tabItem(tabName = "algos",
         fluidRow(column(12,
           div(class = "alert-info2",
@@ -339,7 +343,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 7: PIPELINE --------------------------------------------------------
+      # ── TAB 7: PIPELINE ────────────────────────────────────────────────────
       tabItem(tabName = "pipeline",
         fluidRow(column(12,
           div(class = "alert-info2",
@@ -366,7 +370,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 8: OUTCOMES --------------------------------------------------------
+      # ── TAB 8: OUTCOMES ────────────────────────────────────────────────────
       tabItem(tabName = "outcomes",
         fluidRow(column(12,
           div(class = "alert-crit",
@@ -393,7 +397,7 @@ ui <- dashboardPage(
         )
       ),
 
-      # TAB 9: REGULATORY EDI --------------------------------------------------
+      # ── TAB 9: REGULATORY EDI ──────────────────────────────────────────────
       tabItem(tabName = "regedi",
         fluidRow(column(12,
           div(class = "alert-info2",
@@ -409,12 +413,12 @@ ui <- dashboardPage(
           box(title = "EMA COMPLIANCE BY CRITERION", width = 6,
               status = "primary", solidHeader = TRUE,
               tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
-                "EMA Reflection Paper on Diversity in Clinical Trials (EMA/CHMP/799220/2022, March 2023)"),
+                "EMA Reflection Paper on Diversity in Clinical Trials (EMA/CHMP/799220/2022)"),
               withSpinner(plotlyOutput("re_ema_crit", height = 320), color = GOLD)),
           box(title = "FDA COMPLIANCE BY CRITERION", width = 6,
               status = "primary", solidHeader = TRUE,
               tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
-                "FDA Diversity Action Plans guidance (FDA-2022-D-1961, June 2022 / updated April 2024)"),
+                "FDA Diversity Action Plans guidance (FDA-2022-D-1961)"),
               withSpinner(plotlyOutput("re_fda_crit", height = 320), color = GOLD))
         ),
         fluidRow(
@@ -435,17 +439,75 @@ ui <- dashboardPage(
               status = "danger", solidHeader = TRUE,
               withSpinner(plotlyOutput("re_pie", height = 420), color = GOLD))
         )
+      ),
+
+      # ── TAB 10: TARGET TRIAL EMULATION ─────────────────────────────────────
+      tabItem(tabName = "tte",
+        fluidRow(column(12,
+          div(class = "alert-warn",
+            tags$span(class = "badge-syn", "SYNTHETIC DATA"), HTML("&nbsp;"),
+            tags$b("Target Trial Emulation — SGLT2 Inhibitor vs Metformin | 24-month MACE"),
+            tags$p(style = "margin:5px 0 0;font-size:12px;color:#4A5568;",
+              "Emulating an RCT from observational data using propensity score matching. ",
+              "Ref: Hernán & Robins (2016) Am J Epidemiol 183:758-764; ",
+              "Dickerman et al. (2022) NEJM Evidence.")
+          )
+        )),
+        fluidRow(
+          valueBoxOutput("tte1", 3), valueBoxOutput("tte2", 3),
+          valueBoxOutput("tte3", 3), valueBoxOutput("tte4", 3)
+        ),
+        fluidRow(
+          box(title = "ELIGIBILITY CRITERIA EMULATION — EDI EXCLUSION", width = 7,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Which subgroups are disproportionately excluded by standard trial eligibility criteria?"),
+              withSpinner(plotlyOutput("tte_excl", height = 340), color = GOLD)),
+          box(title = "OUTCOME SUMMARY", width = 5,
+              status = "danger", solidHeader = TRUE,
+              withSpinner(DTOutput("tte_outcomes"), color = GOLD))
+        ),
+        fluidRow(
+          box(title = "FOREST PLOT — SUBGROUP HETEROGENEITY", width = 8,
+              status = "primary", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "Risk Ratio for 24-month MACE by subgroup. EDI subgroups highlighted."),
+              withSpinner(plotlyOutput("tte_forest", height = 420), color = GOLD)),
+          box(title = "EDI TREATMENT ACCESS", width = 4,
+              status = "warning", solidHeader = TRUE,
+              tags$p(style = "font-size:11px;color:#718096;margin-bottom:6px;",
+                "SGLT2 prescribing rate by equity subgroup — confounding by SES and rurality."),
+              withSpinner(plotlyOutput("tte_access", height = 420), color = GOLD))
+        ),
+        fluidRow(
+          box(title = "CAUSAL ASSUMPTIONS & LIMITATIONS", width = 12,
+              status = "info", solidHeader = TRUE,
+              div(style = "font-size:12px;color:#4A5568;padding:8px;",
+                tags$b("Three key causal assumptions (Hernán & Robins, 2022):"), tags$br(),
+                tags$ol(
+                  tags$li(tags$b("Exchangeability:"), " No unmeasured confounding conditional on covariates."),
+                  tags$li(tags$b("Positivity:"), " Both treatments possible for every covariate pattern."),
+                  tags$li(tags$b("Consistency:"), " Treatment is well-defined (new-user, active comparator design).")
+                ),
+                tags$b("Limitations:"), tags$br(),
+                tags$ul(
+                  tags$li("Synthetic data — all results are methodological demonstrations only."),
+                  tags$li("Unmeasured confounders not captured (prescriber preference, formulary access)."),
+                  tags$li("ITT analysis only — per-protocol would require censoring at treatment switch.")
+                )
+              ))
+        )
       )
 
     ), # end tabItems
 
     div(class = "footer",
-      "EDI Recruitment Intelligence Platform v5.0  |  Sm Hasan ul Bari MBBS MSc MSc  |  ",
+      "EDI Recruitment Intelligence Platform v6.0  |  Sm Hasan ul Bari MBBS MSc MSc  |  ",
       tags$a("github.com/sm-hasanulbari/diabetes-trial-edi-equity",
              href = "https://github.com/sm-hasanulbari/diabetes-trial-edi-equity",
              target = "_blank", style = paste0("color:", GOLD, ";text-decoration:none;")))
-  ) # end dashboardBody
-)   # end dashboardPage
+  )
+)
 
 # 6. SERVER --------------------------------------------------------------------
 server <- function(input, output, session) {
@@ -462,7 +524,8 @@ server <- function(input, output, session) {
   eu_r <- reactive({
     df <- scored_r()
     if (is.null(df)) return(NULL)
-    df[!is.na(df$has_european_site) & as.character(df$has_european_site) %in% c("TRUE","True","true","1"), ]
+    df[!is.na(df$has_european_site) &
+       as.character(df$has_european_site) %in% c("TRUE","True","true","1"), ]
   })
 
   reg_r <- reactive({
@@ -474,7 +537,20 @@ server <- function(input, output, session) {
     df
   })
 
-  # ── Overview ----------------------------------------------------------------
+  tte_sum_r  <- reactive({ dat$tte_sum })
+  tte_sg_r   <- reactive({ dat$tte_sg })
+  tte_excl_r <- reactive({ dat$tte_excl })
+  tte_acc_r  <- reactive({ dat$tte_acc })
+
+  get_tte_val <- function(metric) {
+    df <- tte_sum_r()
+    if (is.null(df)) return(NA)
+    v <- df$Value[df$Metric == metric]
+    if (length(v) == 0) return(NA)
+    as.numeric(v[1])
+  }
+
+  # ── Overview ─────────────────────────────────────────────────────────────────
   output$ov_badge <- renderUI({
     df <- scored_r()
     n  <- if (!is.null(df)) nrow(df) else "?"
@@ -488,33 +564,33 @@ server <- function(input, output, session) {
 
   output$ov1 <- renderValueBox({
     df <- scored_r()
-    n  <- if (!is.null(df)) format(nrow(df), big.mark=",") else "N/A"
-    valueBox(n, "Trials Analysed", icon = icon("flask"), color = "blue")
+    valueBox(if (!is.null(df)) format(nrow(df), big.mark=",") else "N/A",
+             "Trials Analysed", icon = icon("flask"), color = "blue")
   })
   output$ov2 <- renderValueBox({
     df <- scored_r()
-    v  <- if (!is.null(df)) paste0(fmt1(mean(df$edi_score, na.rm=TRUE)), "/100") else "N/A"
-    valueBox(v, "Global Mean EDI", icon = icon("chart-bar"), color = "yellow")
+    valueBox(if (!is.null(df)) paste0(fmt1(mean(df$edi_score, na.rm=TRUE)),"/100") else "N/A",
+             "Global Mean EDI", icon = icon("chart-bar"), color = "yellow")
   })
   output$ov3 <- renderValueBox({
     df <- scored_r()
-    v  <- if (!is.null(df)) pct(mean(df$edi_score < 40, na.rm=TRUE)) else "N/A"
-    valueBox(v, "Poor or Fair EDI", icon = icon("exclamation-triangle"), color = "red")
+    valueBox(if (!is.null(df)) pct(mean(df$edi_score < 40, na.rm=TRUE)) else "N/A",
+             "Poor or Fair EDI", icon = icon("exclamation-triangle"), color = "red")
   })
   output$ov4 <- renderValueBox({
     df <- scored_r()
-    v  <- if (!is.null(df)) pct(mean(df$edi_score >= 80, na.rm=TRUE)) else "N/A"
-    valueBox(v, "Rated Excellent", icon = icon("star"), color = "green")
+    valueBox(if (!is.null(df)) pct(mean(df$edi_score >= 80, na.rm=TRUE)) else "N/A",
+             "Rated Excellent", icon = icon("star"), color = "green")
   })
   output$ov5 <- renderValueBox({
     df <- eu_r()
-    n  <- if (!is.null(df)) format(nrow(df), big.mark=",") else "N/A"
-    valueBox(n, "European Trials", icon = icon("map"), color = "blue")
+    valueBox(if (!is.null(df)) format(nrow(df), big.mark=",") else "N/A",
+             "European Trials", icon = icon("map"), color = "blue")
   })
   output$ov6 <- renderValueBox({
     df <- eu_r()
-    v  <- if (!is.null(df)) paste0(fmt1(mean(df$edi_score, na.rm=TRUE)), "/100") else "N/A"
-    valueBox(v, "EU Mean EDI", icon = icon("chart-line"), color = "yellow")
+    valueBox(if (!is.null(df)) paste0(fmt1(mean(df$edi_score, na.rm=TRUE)),"/100") else "N/A",
+             "EU Mean EDI", icon = icon("chart-line"), color = "yellow")
   })
   output$ov7 <- renderValueBox(
     valueBox("Week 35", "CUSUM Female Alarm", icon = icon("bell"), color = "red"))
@@ -524,13 +600,11 @@ server <- function(input, output, session) {
   output$ov_strand <- renderPlotly({
     df  <- scored_r()
     wks <- 1:52
-    f   <- sim_enroll("Female");  cu_f <- run_cusum(f)
+    f   <- sim_enroll("Female");   cu_f <- run_cusum(f)
     m   <- sim_enroll("Minority"); cu_m <- run_cusum(m)
-
     grades <- if (!is.null(df)) {
       table(factor(df$edi_grade, levels = c("Poor","Fair","Good","Excellent")))
     } else c(Poor=14, Fair=837, Good=5, Excellent=0)
-
     plot_ly() %>%
       add_bars(x = names(grades), y = as.numeric(grades),
                marker = list(color = c(RED, AMBER, BLUE, GREEN)),
@@ -567,13 +641,12 @@ server <- function(input, output, session) {
       )
   })
 
-  # ── Global EDI --------------------------------------------------------------
+  # ── Global EDI ───────────────────────────────────────────────────────────────
   output$gl_header <- renderUI({
     df <- scored_r()
     n  <- if (!is.null(df)) format(nrow(df), big.mark=",") else "?"
     tags$b(paste0("ClinicalTrials.gov API v2 · ", n, " completed T2D trials · March 2026"))
   })
-
   output$gl1 <- renderValueBox({
     df <- scored_r()
     valueBox(if (!is.null(df)) format(nrow(df), big.mark=",") else "N/A",
@@ -595,7 +668,6 @@ server <- function(input, output, session) {
       pct(mean(as.logical(df$flag_no_health_literacy), na.rm=TRUE)) else "N/A"
     valueBox(v, "Fail Health Literacy", icon = icon("times-circle"), color = "red")
   })
-
   output$gl_dist <- renderPlotly({
     df <- scored_r()
     if (is.null(df)) return(plot_ly() %>% layout(title = "Data not loaded"))
@@ -613,7 +685,6 @@ server <- function(input, output, session) {
              legend=list(orientation="h",y=-0.3),
              paper_bgcolor="white", plot_bgcolor="white")
   })
-
   output$gl_pie <- renderPlotly({
     df <- scored_r()
     if (is.null(df)) return(plot_ly())
@@ -625,7 +696,6 @@ server <- function(input, output, session) {
       layout(showlegend=TRUE, legend=list(orientation="h",y=-0.15),
              paper_bgcolor="white")
   })
-
   output$gl_sponsor <- renderPlotly({
     df <- scored_r()
     if (is.null(df) || !"sponsor_class" %in% names(df))
@@ -635,32 +705,29 @@ server <- function(input, output, session) {
       filter(n >= 5) %>% arrange(mean_edi)
     gm <- mean(df$edi_score, na.rm=TRUE)
     plot_ly(sp, y=~reorder(sponsor_class,mean_edi), x=~mean_edi,
-            type="bar", orientation="h",
-            marker=list(color=NAVY),
+            type="bar", orientation="h", marker=list(color=NAVY),
             text=~sprintf("%.1f (n=%d)",mean_edi,n), textposition="outside") %>%
       add_segments(x=gm,xend=gm,y=0.5,yend=nrow(sp)+0.5,
                    line=list(color=RED,dash="dash",width=2), showlegend=FALSE) %>%
       layout(xaxis=list(title="Mean EDI Score"),yaxis=list(title=""),
              paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$gl_tbl <- renderDT({
     df <- scored_r()
-    if (is.null(df)) return(datatable(data.frame(Note="Run notebook first to load data")))
+    if (is.null(df)) return(datatable(data.frame(Note="Run notebook first")))
     cols <- intersect(c("nct_id","title","start_year","phase",
                         "sponsor_class","enrollment","edi_score","edi_grade"), names(df))
     datatable(df[, cols, drop=FALSE], rownames=FALSE,
               options=list(pageLength=8, scrollX=TRUE), class="compact stripe hover")
   })
 
-  # ── European ----------------------------------------------------------------
+  # ── European ─────────────────────────────────────────────────────────────────
   output$eu_header <- renderUI({
     eu <- eu_r(); sc <- scored_r()
-    n_eu <- if (!is.null(eu)) format(nrow(eu),big.mark=",") else "?"
+    n_eu  <- if (!is.null(eu)) format(nrow(eu),big.mark=",") else "?"
     n_all <- if (!is.null(sc)) format(nrow(sc),big.mark=",") else "?"
     tags$b(paste0(n_eu, " European trials from ", n_all, "-trial global set"))
   })
-
   output$eu1 <- renderValueBox({
     df <- eu_r()
     valueBox(if (!is.null(df)) format(nrow(df),big.mark=",") else "N/A",
@@ -673,17 +740,17 @@ server <- function(input, output, session) {
   })
   output$eu3 <- renderValueBox({
     df <- eu_r()
-    if (is.null(df) || !"countries" %in% names(df)) return(valueBox("N/A","Countries",icon=icon("globe"),color="green"))
+    if (is.null(df) || !"countries" %in% names(df))
+      return(valueBox("N/A","Countries",icon=icon("globe"),color="green"))
     n_c <- length(unique(unlist(strsplit(paste(df$countries,collapse="|"),"|",fixed=TRUE))))
     valueBox(n_c, "Countries", icon=icon("globe"), color="green")
   })
   output$eu4 <- renderValueBox({
     df <- eu_r()
     v  <- if (!is.null(df) && "is_multicountry" %in% names(df))
-      pct(mean(df$is_multicountry, na.rm=TRUE)) else "N/A"
+      pct(mean(as.logical(df$is_multicountry), na.rm=TRUE)) else "N/A"
     valueBox(v, "Multi-Country", icon=icon("network-wired"), color="purple")
   })
-
   output$eu_country <- renderPlotly({
     df <- eu_r()
     if (is.null(df) || !"countries" %in% names(df))
@@ -693,12 +760,12 @@ server <- function(input, output, session) {
       cs <- strsplit(as.character(df$countries[i]), "|", fixed=TRUE)[[1]]
       for (cc in cs) rows[[length(rows)+1]] <- data.frame(country=trimws(cc), edi=df$edi_score[i])
     }
-    cd <- do.call(rbind, rows)
-    cd <- cd[!is.na(cd$edi), ]
+    cd  <- do.call(rbind, rows)
+    cd  <- cd[!is.na(cd$edi), ]
     agg <- cd %>% group_by(country) %>%
       summarise(mean_edi=mean(edi,na.rm=TRUE), n=n(), .groups="drop") %>%
       filter(n >= input$eu_minn) %>% arrange(mean_edi)
-    if (nrow(agg) == 0) return(plot_ly() %>% layout(title="No countries meet minimum trials threshold"))
+    if (nrow(agg) == 0) return(plot_ly() %>% layout(title="No countries meet minimum threshold"))
     gm <- mean(df$edi_score, na.rm=TRUE)
     bc <- ifelse(agg$mean_edi >= 40, GREEN, ifelse(agg$mean_edi >= 35, AMBER, RED))
     plot_ly(agg, y=~reorder(country,mean_edi), x=~mean_edi,
@@ -709,12 +776,12 @@ server <- function(input, output, session) {
       layout(xaxis=list(title="Mean EDI Score"), yaxis=list(title=""),
              paper_bgcolor="white", plot_bgcolor="white", showlegend=FALSE)
   })
-
   output$eu_vs <- renderPlotly({
     sc <- scored_r(); eu <- eu_r()
     if (is.null(sc) || is.null(eu)) return(plot_ly())
+    eu_ids   <- rownames(eu)
     eu_mean  <- mean(eu$edi_score, na.rm=TRUE)
-    non_mean <- mean(sc$edi_score[sc$has_european_site != TRUE], na.rm=TRUE)
+    non_mean <- mean(sc$edi_score[!rownames(sc) %in% eu_ids], na.rm=TRUE)
     plot_ly(x=c(paste0("EU (n=",nrow(eu),")"), paste0("Non-EU (n=",nrow(sc)-nrow(eu),")")),
             y=c(eu_mean, non_mean), type="bar",
             marker=list(color=c(BLUE,GREY)),
@@ -724,14 +791,13 @@ server <- function(input, output, session) {
              paper_bgcolor="white", plot_bgcolor="white", showlegend=FALSE)
   })
 
-  # ── Drift -------------------------------------------------------------------
+  # ── Drift ─────────────────────────────────────────────────────────────────────
   dr_res <- reactive({
     obs <- sim_enroll(input$dr_grp)
     if (input$dr_mth == "CUSUM") run_cusum(obs, input$ck/100, input$ch/100)
     else if (input$dr_mth == "EWMA") run_ewma(obs, input$elam, input$eL)
     else run_ztest(obs, input$zw, input$za)
   })
-
   output$dr_chart <- renderPlotly({
     r <- dr_res(); wks <- seq_along(r$stat)
     p <- plot_ly() %>%
@@ -752,7 +818,6 @@ server <- function(input, output, session) {
                  legend=list(orientation="h",y=-0.25),
                  paper_bgcolor="white", plot_bgcolor="white")
   })
-
   output$dr_alarm <- renderUI({
     r <- dr_res()
     if (!is.na(r$alarm)) {
@@ -764,7 +829,6 @@ server <- function(input, output, session) {
         tags$b("NO ALARM — All parameters within control limits"))
     }
   })
-
   output$dr_traj <- renderPlotly({
     wks <- 1:52
     f <- sim_enroll("Female"); m <- sim_enroll("Minority")
@@ -779,7 +843,7 @@ server <- function(input, output, session) {
              paper_bgcolor="white",plot_bgcolor="white")
   })
 
-  # ── Fairness (synthetic) ----------------------------------------------------
+  # ── Fairness ─────────────────────────────────────────────────────────────────
   dir_df <- data.frame(
     g = c("Disability","Elderly","Rural","Minority","Low SES","Female"),
     d = c(0.871,0.910,0.923,0.932,0.941,1.014))
@@ -801,7 +865,6 @@ server <- function(input, output, session) {
       layout(xaxis=list(title="Disparate Impact Ratio",range=c(0.70,1.15)),
              yaxis=list(title=""),paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$fa_spd <- renderPlotly({
     bc <- ifelse(abs(spd_df$s)>5,RED,ifelse(abs(spd_df$s)>3,AMBER,GREEN))
     plot_ly(spd_df,y=~reorder(g,s),x=~s,type="bar",orientation="h",
@@ -811,7 +874,6 @@ server <- function(input, output, session) {
       layout(xaxis=list(title="SPD (pp)",range=c(-12,6)),yaxis=list(title=""),
              paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$fa_tbl <- renderDT({
     df <- data.frame(
       Metric=c("Disparate Impact Ratio","Statistical Parity Diff","Equal Opportunity Diff","Calibration","ROC AUC Gap"),
@@ -824,7 +886,7 @@ server <- function(input, output, session) {
       formatStyle("Status",color=styleEqual(c("Pass","Caution","N/A"),c(GREEN,AMBER,GREY)),fontWeight="bold")
   })
 
-  # ── Algorithms (synthetic benchmark) ----------------------------------------
+  # ── Algorithms ───────────────────────────────────────────────────────────────
   alg_df <- data.frame(
     Method=c("CUSUM K=1","CUSUM K=2","CUSUM K=3","CUSUM K=4",
              "EWMA l=0.10","EWMA l=0.20","EWMA l=0.30","Z-test w=4","Z-test w=8","Z-test w=12"),
@@ -842,7 +904,6 @@ server <- function(input, output, session) {
       layout(xaxis=list(title="Detection Lag (weeks)",autorange="reversed"),
              yaxis=list(title="Sensitivity (%)"),paper_bgcolor="white",plot_bgcolor="white")
   })
-
   output$alg_sens <- renderPlotly({
     xy <- switch(input$alg_met,
       lag  = list(x=1:5,y=c(7,9,11,13,16),xt="CUSUM K (pp)",yt="Detection lag (wk)",col=NAVY),
@@ -857,13 +918,12 @@ server <- function(input, output, session) {
       layout(xaxis=list(title=xy$xt),yaxis=list(title=xy$yt),
              paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$alg_tbl <- renderDT({
     df <- alg_df; names(df)[3:6] <- c("Lag (wk)","Sensitivity (%)","Specificity (%)","ARL0 (wk)")
     datatable(df,rownames=FALSE,options=list(pageLength=10,scrollX=TRUE),class="compact stripe hover")
   })
 
-  # ── Pipeline (static reference) ---------------------------------------------
+  # ── Pipeline ─────────────────────────────────────────────────────────────────
   output$pipe_src <- renderDT({
     df <- data.frame(
       Source=c("EDC","CTMS","IRT","Screening Logs","Demographics","Lab","PRO"),
@@ -877,7 +937,6 @@ server <- function(input, output, session) {
         backgroundColor=styleEqual(c("Active","Pending","Planned","Reference"),c(GRN_L,AMB_L,BLU_L,OFF_W)),
         color=styleEqual(c("Active","Pending","Planned","Reference"),c(GREEN,AMBER,BLUE,GREY)))
   })
-
   output$pipe_flow <- renderPlotly({
     plot_ly(type="sankey",orientation="h",
       node=list(label=c("EDC","CTMS","IRT","Screening","Demographics",
@@ -887,7 +946,6 @@ server <- function(input, output, session) {
                 value=c(3,3,2,2,1,6,4,3,3,3,3))) %>%
       layout(font=list(size=11,color=NAVY),paper_bgcolor="white")
   })
-
   output$pipe_gdpr <- renderDT({
     df <- data.frame(
       Requirement=c("Informed consent","Data minimisation (Art.5)","Pseudonymisation",
@@ -896,7 +954,6 @@ server <- function(input, output, session) {
     datatable(df,rownames=FALSE,options=list(dom="t",scrollX=TRUE),class="compact stripe") %>%
       formatStyle("Status",color=styleEqual(c("Implemented","In progress"),c(GREEN,AMBER)),fontWeight="bold")
   })
-
   output$pipe_comp <- renderPlotly({
     df <- data.frame(src=c("EDC","CTMS","IRT","Screening","Demographics"),
                      comp=c(91,84,96,72,88),time=c(95,88,98,65,60))
@@ -907,7 +964,7 @@ server <- function(input, output, session) {
              legend=list(orientation="h",y=-0.25),paper_bgcolor="white",plot_bgcolor="white")
   })
 
-  # ── Outcome Report ----------------------------------------------------------
+  # ── Outcome Report ───────────────────────────────────────────────────────────
   flag_map <- data.frame(
     col    = c("flag_no_health_literacy","flag_no_gender_identity","flag_no_diversity_target",
                "flag_no_community_engagement","flag_no_disability_mention","flag_no_language_provision",
@@ -934,24 +991,22 @@ server <- function(input, output, session) {
       sprintf("%s trials. 100%% fail health literacy, gender identity, and diversity targets.",
               format(nrow(df),big.mark=",")))
   })
-
   output$out_flags <- renderPlotly({
     df <- scored_r()
-    if (is.null(df)) return(plot_ly() %>% layout(title="Data not loaded"))
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Data not loaded"))
     fm <- flag_map
     if (input$out_dom != "all") fm <- fm[fm$domain == input$out_dom, ]
     avail <- fm[fm$col %in% names(df), ]
-    if (nrow(avail) == 0) return(plot_ly() %>% layout(title="No flags available for this domain"))
+    if (nrow(avail) == 0) return(plot_ly() %>% layout(title="No flags for this domain"))
     rates <- sapply(avail$col, function(cc) mean(as.logical(df[[cc]]), na.rm=TRUE) * 100)
-    fd <- data.frame(label=avail$label, rate=rates, domain=avail$domain)
-    fd <- fd[order(fd$rate), ]
-    bc <- unname(dom_cols[fd$domain])
+    fd    <- data.frame(label=avail$label, rate=rates, domain=avail$domain)
+    fd    <- fd[order(fd$rate), ]
+    bc    <- unname(dom_cols[fd$domain])
     plot_ly(fd,y=~reorder(label,rate),x=~rate,type="bar",orientation="h",
             marker=list(color=bc),text=~paste0(round(rate,1),"%"),textposition="outside") %>%
       layout(xaxis=list(title="Failure Rate (%)",range=c(0,120)),yaxis=list(title=""),
              paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$out_kpi <- renderDT({
     df <- scored_r()
     if (is.null(df)) return(datatable(data.frame(Note="Data not loaded")))
@@ -965,7 +1020,7 @@ server <- function(input, output, session) {
                 "Health literacy fail","Diversity target fail","Female drift",
                 "Minority drift","CUSUM lag Female","CUSUM lag Minority","Min DIR"),
       Value = c(paste0(fmt1(mean(df$edi_score,na.rm=TRUE)),"/100"),
-                if(!is.null(eu)) paste0(fmt1(mean(eu$edi_score,na.rm=TRUE)),"/100") else "N/A",
+                if (!is.null(eu)) paste0(fmt1(mean(eu$edi_score,na.rm=TRUE)),"/100") else "N/A",
                 pct(mean(df$edi_score<40,na.rm=TRUE)),
                 pct(mean(df$edi_score>=80,na.rm=TRUE)),
                 hl_rate, dt_rate,
@@ -978,7 +1033,6 @@ server <- function(input, output, session) {
         color=styleEqual(c("CRIT","WARN","OK"),c(RED,AMBER,GREEN)),fontWeight="bold") %>%
       formatStyle("Source",color=styleEqual(c("Real","Synthetic"),c(GREEN,AMBER)),fontWeight="bold")
   })
-
   output$out_evid <- renderDT({
     df <- scored_r(); eu <- eu_r()
     n_all <- if (!is.null(df)) format(nrow(df),big.mark=",") else "?"
@@ -1003,13 +1057,12 @@ server <- function(input, output, session) {
       formatStyle("Confidence",color=styleEqual(c("High","Methodological demo"),c(GREEN,AMBER)),fontWeight="bold")
   })
 
-  # ── Regulatory EDI ----------------------------------------------------------
+  # ── Regulatory EDI ───────────────────────────────────────────────────────────
   output$re_header <- renderUI({
     df <- reg_r()
     n  <- if (!is.null(df)) format(nrow(df),big.mark=",") else "?"
     tags$b(paste0("EMA/CHMP/799220/2022 vs FDA-2022-D-1961 — ", n, " completed diabetes trials"))
   })
-
   output$re1 <- renderValueBox({
     df <- reg_r()
     v  <- if (!is.null(df) && "ema_compliance_pct" %in% names(df))
@@ -1034,26 +1087,24 @@ server <- function(input, output, session) {
       pct(mean(df$reg_gap_grade == "Critical Gap", na.rm=TRUE)) else "N/A"
     valueBox(v, "Critical Gap (Both)", icon=icon("exclamation-triangle"), color="red")
   })
-
   output$re_ema_crit <- renderPlotly({
     df <- reg_r()
     if (is.null(df)) return(plot_ly() %>% layout(title="regulatory_edi_scored.csv not loaded"))
-    ema_cols <- c("ema_age_inclusive","ema_sex_inclusive","ema_comorbidity_open",
-                  "ema_subgroup_planned","ema_geriatric_mention","ema_diversity_rationale")
+    ema_cols   <- c("ema_age_inclusive","ema_sex_inclusive","ema_comorbidity_open",
+                    "ema_subgroup_planned","ema_geriatric_mention","ema_diversity_rationale")
     ema_labels <- c("Age-inclusive","Sex-inclusive","Comorbidity open",
                     "Subgroup planned","Geriatric mention","Diversity rationale")
     avail <- ema_cols[ema_cols %in% names(df)]
     if (length(avail) == 0) return(plot_ly() %>% layout(title="EMA columns not found"))
     rates <- sapply(avail, function(cc) mean(as.logical(df[[cc]]), na.rm=TRUE)*100)
     labs  <- ema_labels[ema_cols %in% names(df)]
-    fd <- data.frame(label=labs, rate=rates)[order(rates),]
-    bc <- ifelse(fd$rate>=60,GREEN,ifelse(fd$rate>=30,AMBER,RED))
+    fd    <- data.frame(label=labs, rate=rates)[order(rates),]
+    bc    <- ifelse(fd$rate>=60,GREEN,ifelse(fd$rate>=30,AMBER,RED))
     plot_ly(fd,y=~reorder(label,rate),x=~rate,type="bar",orientation="h",
             marker=list(color=bc),text=~paste0(round(rate,1),"%"),textposition="outside") %>%
       layout(xaxis=list(title="% Trials Meeting Criterion",range=c(0,115)),
              yaxis=list(title=""),paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$re_fda_crit <- renderPlotly({
     df <- reg_r()
     if (is.null(df)) return(plot_ly() %>% layout(title="regulatory_edi_scored.csv not loaded"))
@@ -1063,14 +1114,13 @@ server <- function(input, output, session) {
     if (length(avail) == 0) return(plot_ly() %>% layout(title="FDA columns not found"))
     rates <- sapply(avail, function(cc) mean(as.logical(df[[cc]]), na.rm=TRUE)*100)
     labs  <- fda_labels[fda_cols %in% names(df)]
-    fd <- data.frame(label=labs, rate=rates)[order(rates),]
-    bc <- ifelse(fd$rate>=60,GREEN,ifelse(fd$rate>=30,AMBER,RED))
+    fd    <- data.frame(label=labs, rate=rates)[order(rates),]
+    bc    <- ifelse(fd$rate>=60,GREEN,ifelse(fd$rate>=30,AMBER,RED))
     plot_ly(fd,y=~reorder(label,rate),x=~rate,type="bar",orientation="h",
             marker=list(color=bc),text=~paste0(round(rate,1),"%"),textposition="outside") %>%
       layout(xaxis=list(title="% Trials Meeting Criterion",range=c(0,115)),
              yaxis=list(title=""),paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$re_scatter <- renderPlotly({
     df <- reg_r()
     if (is.null(df) || !all(c("ema_compliance_pct","fda_compliance_pct") %in% names(df)))
@@ -1094,7 +1144,6 @@ server <- function(input, output, session) {
                text=paste0("r = ",round(r,2)),font=list(size=12,color=NAVY))),
              paper_bgcolor="white",plot_bgcolor="white",showlegend=FALSE)
   })
-
   output$re_trend <- renderPlotly({
     df <- reg_r()
     if (is.null(df)) return(plot_ly() %>% layout(title="Data not loaded"))
@@ -1107,19 +1156,17 @@ server <- function(input, output, session) {
       filter(start_year >= 2000, n >= 3)
     if (nrow(trend) == 0) return(plot_ly() %>% layout(title="Insufficient data"))
     plot_ly(trend,x=~start_year,y=~m,type="scatter",mode="lines+markers",
-            line=list(color=NAVY,width=2),marker=list(color=GOLD,size=7),
-            name=lbl) %>%
+            line=list(color=NAVY,width=2),marker=list(color=GOLD,size=7),name=lbl) %>%
       add_segments(x=yr,xend=yr,y=min(trend$m)*0.9,yend=max(trend$m)*1.1,
                    line=list(color=RED,dash="dash",width=2),
                    name=paste("Guidance published",yr)) %>%
       layout(xaxis=list(title="Trial Start Year"),yaxis=list(title=lbl),
              annotations=list(list(x=0.5,y=-0.18,xref="paper",yref="paper",showarrow=FALSE,
-               text="Descriptive trend only — trial start year \u2260 protocol design date",
+               text="Descriptive trend only — trial start \u2260 protocol design date",
                font=list(size=9,color=GREY))),
              legend=list(orientation="h",y=-0.25),
              paper_bgcolor="white",plot_bgcolor="white")
   })
-
   output$re_country <- renderPlotly({
     df <- reg_r()
     if (is.null(df) || !"countries" %in% names(df))
@@ -1140,12 +1187,11 @@ server <- function(input, output, session) {
       }
     }
     if (length(rows) == 0) return(plot_ly() %>% layout(title="No European country data found"))
-    cd   <- do.call(rbind, rows)
-    agg  <- cd %>% group_by(country) %>%
+    cd  <- do.call(rbind, rows)
+    agg <- cd %>% group_by(country) %>%
       summarise(mean_ema=mean(ema,na.rm=TRUE), mean_fda=mean(fda,na.rm=TRUE), n=n(), .groups="drop") %>%
       filter(n >= input$re_minn) %>% arrange(mean_ema)
-    if (nrow(agg) == 0) return(plot_ly() %>% layout(title="No countries meet minimum trials threshold"))
-    y <- seq_len(nrow(agg)); h <- 0.35
+    if (nrow(agg) == 0) return(plot_ly() %>% layout(title="No countries meet minimum threshold"))
     plot_ly() %>%
       add_bars(x=agg$mean_ema, y=reorder(agg$country,agg$mean_ema),
                orientation="h", name="EMA %", marker=list(color=NAVY)) %>%
@@ -1156,19 +1202,118 @@ server <- function(input, output, session) {
              legend=list(orientation="h",y=-0.15),
              paper_bgcolor="white",plot_bgcolor="white")
   })
-
   output$re_pie <- renderPlotly({
     df <- reg_r()
     if (is.null(df) || !"reg_gap_grade" %in% names(df))
       return(plot_ly() %>% layout(title="reg_gap_grade column not found"))
     gap_order <- c("Critical Gap","Substantial Gap","Moderate Gap","Compliant")
-    counts <- table(factor(as.character(df$reg_gap_grade), levels=gap_order))
+    counts    <- table(factor(as.character(df$reg_gap_grade), levels=gap_order))
     plot_ly(labels=names(counts), values=as.numeric(counts), type="pie",
             marker=list(colors=c(RED,AMBER,BLUE,GREEN),line=list(color="white",width=2)),
             textinfo="label+percent") %>%
       layout(showlegend=TRUE,legend=list(orientation="h",y=-0.15),paper_bgcolor="white")
   })
 
+  # ── Target Trial Emulation ───────────────────────────────────────────────────
+  output$tte1 <- renderValueBox({
+    v <- get_tte_val("N matched pairs")
+    valueBox(if (!is.na(v)) format(as.integer(v * 2), big.mark = ",") else "N/A",
+             "Matched Participants", icon = icon("users"), color = "blue")
+  })
+  output$tte2 <- renderValueBox({
+    v <- get_tte_val("Risk Ratio")
+    l <- get_tte_val("RR lower CI")
+    u <- get_tte_val("RR upper CI")
+    lab <- if (!is.na(v)) sprintf("%.2f (%.2f\u2013%.2f)", v, l, u) else "N/A"
+    valueBox(lab, "Risk Ratio (95% CI)", icon = icon("chart-bar"), color = "yellow")
+  })
+  output$tte3 <- renderValueBox({
+    v <- get_tte_val("ARR")
+    valueBox(if (!is.na(v)) paste0(round(v * 100, 1), "pp") else "N/A",
+             "Absolute Risk Reduction", icon = icon("arrow-down"), color = "green")
+  })
+  output$tte4 <- renderValueBox({
+    v <- get_tte_val("NNT")
+    valueBox(if (!is.na(v)) round(v) else "N/A",
+             "NNT (24 months)", icon = icon("user-md"), color = "purple")
+  })
+  output$tte_excl <- renderPlotly({
+    df <- tte_excl_r()
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 14 + export append first"))
+    overall <- as.numeric(df$overall_excl_pct[1])
+    bc <- ifelse(df$excl_pct > overall + 5, RED,
+                 ifelse(df$excl_pct > overall, AMBER, GREEN))
+    plot_ly(x = df$subgroup, y = df$excl_pct, type = "bar",
+            marker = list(color = bc, line = list(color = "white", width = 2)),
+            text = paste0(df$excl_pct, "%"), textposition = "outside") %>%
+      add_segments(x = 0.5, xend = nrow(df) + 0.5, y = overall, yend = overall,
+                   line = list(color = NAVY, dash = "dash", width = 2), showlegend = FALSE) %>%
+      layout(xaxis = list(title = "Subgroup"),
+             yaxis = list(title = "Exclusion Rate (%)",
+                          range = c(0, max(df$excl_pct, na.rm = TRUE) * 1.35)),
+             paper_bgcolor = "white", plot_bgcolor = "white", showlegend = FALSE)
+  })
+  output$tte_outcomes <- renderDT({
+    df <- tte_sum_r()
+    if (is.null(df)) return(datatable(data.frame(Note = "Run Cell 14 first")))
+    show_metrics <- c("N matched pairs","SGLT2 MACE rate","Metformin MACE rate",
+                      "Risk Ratio","ARR","NNT","OR")
+    df_show <- df[df$Metric %in% show_metrics, ]
+    df_show$Value <- as.character(round(as.numeric(df_show$Value), 3))
+    idx <- df_show$Metric == "N matched pairs"
+    if (any(idx))
+      df_show$Value[idx] <- format(as.integer(as.numeric(df_show$Value[idx]) * 2), big.mark = ",")
+    datatable(df_show, rownames = FALSE,
+              options = list(dom = "t", pageLength = 10), class = "compact stripe")
+  })
+  output$tte_forest <- renderPlotly({
+    df <- tte_sg_r()
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 14 first"))
+    overall_rr <- get_tte_val("Risk Ratio")
+    df <- df[order(df$rr), ]
+    bc <- ifelse(df$upper < 1.0, GREEN,
+                 ifelse(df$lower > 1.0, RED, NAVY))
+    p <- plot_ly()
+    for (i in seq_len(nrow(df))) {
+      p <- p %>%
+        add_segments(x = df$lower[i], xend = df$upper[i],
+                     y = df$subgroup[i], yend = df$subgroup[i],
+                     line = list(color = bc[i], width = 3), showlegend = FALSE) %>%
+        add_trace(x = df$rr[i], y = df$subgroup[i],
+                  type = "scatter", mode = "markers",
+                  marker = list(color = bc[i], size = 10), showlegend = FALSE)
+    }
+    if (!is.na(overall_rr))
+      p <- p %>% add_segments(x = overall_rr, xend = overall_rr,
+                               y = 0.5, yend = nrow(df) + 0.5,
+                               line = list(color = NAVY, dash = "dot", width = 2),
+                               name = paste0("Overall RR = ", round(overall_rr, 2)))
+    p %>%
+      add_segments(x = 1, xend = 1, y = 0.5, yend = nrow(df) + 0.5,
+                   line = list(color = "#CCCCCC", dash = "dash"), showlegend = FALSE) %>%
+      layout(xaxis = list(title = "Risk Ratio (SGLT2 vs Metformin)", range = c(0.3, 2.2)),
+             yaxis = list(title = ""),
+             legend = list(orientation = "h", y = -0.15),
+             paper_bgcolor = "white", plot_bgcolor = "white")
+  })
+  output$tte_access <- renderPlotly({
+    df <- tte_acc_r()
+    if (is.null(df)) return(plot_ly() %>% layout(title = "Run Cell 14 first"))
+    overall <- as.numeric(df$overall_rate[1])
+    bc <- ifelse(df$sglt2_rate < overall - 3, RED,
+                 ifelse(df$sglt2_rate < overall, AMBER, GREEN))
+    plot_ly(y = df$subgroup, x = df$sglt2_rate, type = "bar", orientation = "h",
+            marker = list(color = bc),
+            text = paste0(df$sglt2_rate, "%"), textposition = "outside") %>%
+      add_segments(x = overall, xend = overall, y = 0.5, yend = nrow(df) + 0.5,
+                   line = list(color = NAVY, dash = "dash", width = 2), showlegend = FALSE) %>%
+      layout(xaxis = list(title = "SGLT2 Prescribing Rate (%)",
+                          range = c(0, max(df$sglt2_rate, na.rm = TRUE) * 1.3)),
+             yaxis = list(title = ""),
+             paper_bgcolor = "white", plot_bgcolor = "white", showlegend = FALSE)
+  })
+
 } # end server
 
 shinyApp(ui = ui, server = server)
+

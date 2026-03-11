@@ -1,0 +1,14 @@
+Metric,Value
+N cohort,8000.0
+N eligible,4213.0
+N matched pairs,977.0
+SGLT2 MACE rate,0.0624
+Metformin MACE rate,0.0696
+Risk Ratio,0.8971
+RR lower CI,0.6349
+RR upper CI,1.2675
+ARR,0.0072
+NNT,139.6
+OR,0.8902
+OR lower CI,0.6226
+OR upper CI,1.2729
